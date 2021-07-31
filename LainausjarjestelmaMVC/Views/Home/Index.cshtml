@@ -1,15 +1,14 @@
 ﻿@using System.Globalization
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Koti";
 }
-
+<br />
 <div class="jumbotron">
-    <h1>Lainausjärjestelmä</h1>
-    <p class="lead">Careerian tavaroiden lainausjärjestelmä.</p>
-    <p><a href="https://careeria.fi" target="_blank" class="btn btn-primary btn-lg">Careeria &raquo;</a></p>
+    <h1>Tervetuloa tuotteiden lainausjärjestelmään.</h1>
+    <p class="lead">Selaa lainattavia tuotteita, kirjaudu sisään lainataksesi.</p>
+    <br />
+    <p><a href="#" class="btn btn-info btn">Selaa tuotteita &raquo;</a></p>
+    <br />
+    <p><a href="#" class="btn btn-primary btn">Kirjaudu sisään &raquo;</a></p>
+    <br />
 </div>
-
-<div>
-    <p>Päiväys ja aika: @DateTime.Now.ToString(new CultureInfo("fi-FI"))</p>
-</div>
-

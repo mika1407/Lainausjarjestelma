@@ -23,7 +23,7 @@ namespace LainausjarjestelmaMVC
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-quartz.css",
                       "~/Content/site.css"));
         }
     }

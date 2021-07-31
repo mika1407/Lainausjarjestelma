@@ -1,42 +1,71 @@
-﻿<!DOCTYPE html>
+﻿@using System.Globalization
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Lainausjärjestelmä</title>
+    <title>@ViewBag.Title - Tuotteiden lainausjärjestelmä</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Lainausjärjestelmä", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Lainaus", "About", "Home")</li>
-                    <li>@Html.ActionLink("Yhteystiedot", "Contact", "Home")</li>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Lainausjärjestelmä  &raquo;</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="~/Home">Koti<span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Kirjautuminen</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Kirjaudu sisään</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Kirjaudu ulos</a>
+                        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lainaaminen</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Selaa tuotteita</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Lainaa</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Palauta</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/About">Tietoa palvelusta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/Contact">Yhteystiedot</a>
+                    </li>
                 </ul>
+                <form class="d-flex" abineguid="722265D1655B4CFDBED21838AEE3DB83">
+                    <input class="form-control me-sm-2" type="text" placeholder="Etsiminen ei toimi...">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Etsi</button>
+                </form>
             </div>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Tavaroiden Lainausjärjestelmä</p>
+            <p>&copy; @DateTime.Now.Year | Tuotteiden lainausjärjestelmä | Designed by Mika Tiihonen, Mika Hämäläinen & Mattias Boström</p>
+            <p><i>Tänään on @DateTime.Now.ToString(new CultureInfo("fi-FI"))</i></p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
