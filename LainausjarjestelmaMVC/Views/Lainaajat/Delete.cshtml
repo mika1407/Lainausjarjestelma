@@ -1,15 +1,15 @@
 ﻿@model LainausjarjestelmaMVC.Models.Lainaajat
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Poista - Käyttäjä";
 }
+<br />
+<h2>Poista</h2>
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Lainaajat</h4>
+    <h4>Käyttäjä</h4>
     <hr />
+    <h4 class="text-danger">Oletko varma, että haluat poistaa tämän Käyttäjän?</h4>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Etunimi)
@@ -43,22 +43,17 @@
             @Html.DisplayFor(model => model.Puhelinnumero)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Logins.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Logins.Email)
-        </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Poista" class="btn btn-outline-danger" />
+            <br />
+            <br />
+            @Html.ActionLink("Takaisin listaan", "Index")
         </div>
     }
 </div>

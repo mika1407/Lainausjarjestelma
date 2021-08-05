@@ -1,13 +1,13 @@
 ﻿@model LainausjarjestelmaMVC.Models.Logins
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Yhteenveto - Login";
 }
-
-<h2>Details</h2>
+<br />
+<h2>Yhteenveto</h2>
 
 <div>
-    <h4>Logins</h4>
+    <h4>Login</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,18 +25,10 @@
         <dd>
             @Html.DisplayFor(model => model.Salasana)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Kirjautumisvirhe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Kirjautumisvirhe)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LoginID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <br />
+    @Html.ActionLink("Muokkaa", "Edit", new { id = Model.LoginID }) | 
+    @Html.ActionLink("Takaisin listaan", "Index")
 </p>

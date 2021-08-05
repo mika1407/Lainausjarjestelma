@@ -47,8 +47,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ylläpito</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="~/Logins">Logins</a>
-                            <a class="dropdown-item" href="~/Lainaajat">Lainaajat</a>
+                            <a class="dropdown-item" href="~/Logins">Loginit</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="~/Lainaajat">Käyttäjät</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="~/Tuotteet">Tuotteet</a>
                             <div class="dropdown-divider"></div>
@@ -69,7 +70,7 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year | Tuotteiden lainausjärjestelmä | Designed by Mika Tiihonen, Mika Hämäläinen & Mattias Boström</p>
-            <p><i>Tänään on @DateTime.Now.ToString(new CultureInfo("fi-FI"))</i></p>
+            <p><i>Nyt on @DateTime.Now.ToString(new CultureInfo("fi-FI"))</i></p>
         </footer>
     </div>
 

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LainausjarjestelmaMVC.Models.Logins>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Loginit";
 }
-
-<h2>Index</h2>
+<br />
+<h2>Loginit</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Lisää uusi", "Create")
 </p>
 <table class="table">
     <tr>
@@ -16,9 +16,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Salasana)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kirjautumisvirhe)
         </th>
         <th></th>
     </tr>
@@ -32,12 +29,9 @@
             @Html.DisplayFor(modelItem => item.Salasana)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Kirjautumisvirhe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LoginID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LoginID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LoginID })
+            @Html.ActionLink("Muokkaa", "Edit", new { id=item.LoginID }) |
+            @Html.ActionLink("Yhteenveto", "Details", new { id=item.LoginID }) |
+            @Html.ActionLink("Poista", "Delete", new { id=item.LoginID })
         </td>
     </tr>
 }

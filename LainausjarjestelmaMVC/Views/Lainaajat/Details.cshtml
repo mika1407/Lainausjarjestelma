@@ -1,13 +1,13 @@
 ﻿@model LainausjarjestelmaMVC.Models.Lainaajat
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Yhteenveto - Käyttäjä";
 }
-
-<h2>Details</h2>
+<br />
+<h2>Yhteenveto</h2>
 
 <div>
-    <h4>Lainaajat</h4>
+    <h4>Käyttäjä</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -42,17 +42,10 @@
             @Html.DisplayFor(model => model.Puhelinnumero)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Logins.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Logins.Email)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LainaajaID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <br />
+    @Html.ActionLink("Muokkaa", "Edit", new { id = Model.LainaajaID }) |
+    @Html.ActionLink("Takaisin listaan", "Index")
 </p>

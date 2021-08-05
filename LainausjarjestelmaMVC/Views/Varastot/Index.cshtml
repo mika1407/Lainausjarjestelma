@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LainausjarjestelmaMVC.Models.Varastot>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Varastopaikat";
 }
-
-<h2>Index</h2>
+<br />
+<h2>Varastopaikat</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Lisää uusi", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Numero)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VarastoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VarastoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VarastoID })
+            @Html.ActionLink("Muokkaa", "Edit", new { id=item.VarastoID }) |
+            @Html.ActionLink("Yhteenveto", "Details", new { id=item.VarastoID }) |
+            @Html.ActionLink("Poista", "Delete", new { id=item.VarastoID })
         </td>
     </tr>
 }

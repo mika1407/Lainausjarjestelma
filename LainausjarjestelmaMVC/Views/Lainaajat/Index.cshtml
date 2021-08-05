@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LainausjarjestelmaMVC.Models.Lainaajat>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Käyttäjät";
 }
-
-<h2>Index</h2>
+<br />
+<h2>Käyttäjät</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Lisää uusi", "Create")
 </p>
 <table class="table">
     <tr>
@@ -22,9 +22,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Puhelinnumero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Logins.Email)
         </th>
         <th></th>
     </tr>
@@ -44,12 +41,9 @@
             @Html.DisplayFor(modelItem => item.Puhelinnumero)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Logins.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LainaajaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LainaajaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LainaajaID })
+            @Html.ActionLink("Muokkaa", "Edit", new { id=item.LainaajaID }) |
+            @Html.ActionLink("Yhteenveto", "Details", new { id=item.LainaajaID }) |
+            @Html.ActionLink("Poista", "Delete", new { id=item.LainaajaID })
         </td>
     </tr>
 }
