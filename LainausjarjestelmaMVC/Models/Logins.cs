@@ -11,6 +11,7 @@ namespace LainausjarjestelmaMVC.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Logins
     {
@@ -21,7 +22,10 @@ namespace LainausjarjestelmaMVC.Models
         }
     
         public int LoginID { get; set; }
+        [Required(ErrorMessage = "Anna sähköpostiosoite!")]
         public string Email { get; set; }
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Anna salasana!")]
         public string Salasana { get; set; }
         public string Kirjautumisvirhe { get; set; }
     

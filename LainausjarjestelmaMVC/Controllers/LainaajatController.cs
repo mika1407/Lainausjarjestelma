@@ -17,13 +17,23 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat
         public ActionResult Index()
         {
-            var lainaajat = db.Lainaajat.Include(l => l.Logins);
-            return View(lainaajat.ToList());
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                var lainaajat = db.Lainaajat.Include(l => l.Logins);
+                return View(lainaajat.ToList());
+            }
         }
 
         // GET: Lainaajat/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +49,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Create
         public ActionResult Create()
         {
+            ViewBag.LoggedStatus = "In";
             ViewBag.LoginID = new SelectList(db.Logins, "LoginID", "Email");
             return View();
         }
@@ -64,6 +75,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,6 +109,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

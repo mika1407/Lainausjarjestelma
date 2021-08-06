@@ -17,13 +17,38 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet
         public ActionResult Index()
         {
-            var tuotteet = db.Tuotteet.Include(t => t.Lainaajat).Include(t => t.Varastot);
-            return View(tuotteet.ToList());
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                var tuotteet = db.Tuotteet.Include(t => t.Lainaajat).Include(t => t.Varastot);
+                return View(tuotteet.ToList());
+            }
+        }
+
+        //Tuotekuvia pääsee selaamaan kirjautumatta
+        public ActionResult Kuvat()
+        {
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return View(db.Tuotteet.ToList());
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                return View(db.Tuotteet.ToList());
+            }
         }
 
         // GET: Tuotteet/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +64,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet/Create
         public ActionResult Create()
         {
+            ViewBag.LoggedStatus = "In";
             ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
             ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
             return View();
@@ -66,6 +92,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,6 +128,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

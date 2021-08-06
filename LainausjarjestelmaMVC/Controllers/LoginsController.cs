@@ -17,12 +17,22 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins
         public ActionResult Index()
         {
-            return View(db.Logins.ToList());
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                return View(db.Logins.ToList());
+            }
         }
 
         // GET: Logins/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +48,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Create
         public ActionResult Create()
         {
+            ViewBag.LoggedStatus = "In";
             return View();
         }
 
@@ -61,6 +72,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -92,6 +104,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -35,12 +35,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Varastopaikka)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lainaajat.Etunimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Varastot.Varastopaikka)
-        </th>
         <th></th>
     </tr>
 
@@ -69,12 +63,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Varastopaikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lainaajat.Etunimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
         </td>
         <td>
             @Html.ActionLink("Muokkaa", "Edit", new { id=item.TuoteID }) |

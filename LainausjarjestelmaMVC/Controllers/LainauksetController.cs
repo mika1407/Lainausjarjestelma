@@ -17,13 +17,23 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset
         public ActionResult Index()
         {
-            var lainaukset = db.Lainaukset.Include(l => l.Lainaajat).Include(l => l.Tuotteet).Include(l => l.Varastot);
-            return View(lainaukset.ToList());
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                var lainaukset = db.Lainaukset.Include(l => l.Lainaajat).Include(l => l.Tuotteet).Include(l => l.Varastot);
+                return View(lainaukset.ToList());
+            }
         }
 
         // GET: Lainaukset/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -68,6 +78,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -105,6 +116,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

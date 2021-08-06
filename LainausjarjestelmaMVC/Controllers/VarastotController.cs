@@ -17,12 +17,22 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot
         public ActionResult Index()
         {
-            return View(db.Varastot.ToList());
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                return View(db.Varastot.ToList());
+            }
         }
 
         // GET: Varastot/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,6 +71,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -92,6 +103,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.LoggedStatus = "In";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -351,6 +351,8 @@
     <Content Include="Views\Lainaukset\Details.cshtml" />
     <Content Include="Views\Lainaukset\Edit.cshtml" />
     <Content Include="Views\Lainaukset\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Tuotteet\Kuvat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
