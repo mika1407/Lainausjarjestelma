@@ -22,7 +22,7 @@ namespace LainausjarjestelmaMVC.Controllers
             else
             {
                 ViewBag.LoggedStatus = "In";
-                return View();
+                return RedirectToAction("Kirjautunut", "Home");
             }
         }
 
@@ -66,7 +66,21 @@ namespace LainausjarjestelmaMVC.Controllers
             else
             {
                 ViewBag.LoggedStatus = "In";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Kirjautunut", "Home");
+            }
+        }
+
+        public ActionResult Kirjautunut()
+        {
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return View();
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                return View();
             }
         }
 

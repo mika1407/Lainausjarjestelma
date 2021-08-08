@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Lainausjärjestelmä  &raquo; (@ViewBag.LoggedStatus)</a>
+            <a class="navbar-brand" href="#">Lainausjärjestelmä (@ViewBag.LoggedStatus)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,9 +33,9 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="~/Tuotteet/Kuvat">Selaa tuotteita</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Lainaa</a>
+                            <a class="dropdown-item" href="~/Lainaukset/Create">Lainaa</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Palauta</a>
+                            <a class="dropdown-item" href="~/Lainaukset">Palauta</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -57,10 +57,10 @@
                         </div>
                     </li>
                 </ul>
-                <form class="d-flex" abineguid="722265D1655B4CFDBED21838AEE3DB83">
+                @*<form class="d-flex" abineguid="722265D1655B4CFDBED21838AEE3DB83">
                     <input class="form-control me-sm-2" type="text" placeholder="Etsiminen ei toimi...">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Etsi</button>
-                </form>
+                </form>*@
             </div>
         </div>
     </nav>

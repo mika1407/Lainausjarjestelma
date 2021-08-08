@@ -11,7 +11,8 @@ namespace LainausjarjestelmaMVC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tuotteet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace LainausjarjestelmaMVC.Models
         }
     
         public int TuoteID { get; set; }
+        [Display(Name = "Tuote")]
         public string Nimi { get; set; }
         public string Kotivarasto { get; set; }
         public string Kuva { get; set; }

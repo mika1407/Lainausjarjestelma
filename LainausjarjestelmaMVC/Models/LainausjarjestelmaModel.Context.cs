@@ -30,5 +30,6 @@ namespace LainausjarjestelmaMVC.Models
         public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Tuotteet> Tuotteet { get; set; }
         public virtual DbSet<Varastot> Varastot { get; set; }
+        public virtual DbSet<Lainat> Lainat { get; set; }
     }
 }

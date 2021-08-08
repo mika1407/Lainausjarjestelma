@@ -12,7 +12,7 @@ namespace LainausjarjestelmaMVC.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Logins
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +22,11 @@ namespace LainausjarjestelmaMVC.Models
         }
     
         public int LoginID { get; set; }
+
+        [Display(Name = "Sähköposti")]
         [Required(ErrorMessage = "Anna sähköpostiosoite!")]
         public string Email { get; set; }
+
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Anna salasana!")]
         public string Salasana { get; set; }

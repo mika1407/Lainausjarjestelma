@@ -49,10 +49,38 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Create
         public ActionResult Create()
         {
-            ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
-            ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi");
-            ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
-            return View();
+            if (Session["Email"] == null)
+            {
+                ViewBag.LoggedStatus = "Out";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.LoggedStatus = "In";
+                var KokoNimi = db.Lainaajat;
+                IEnumerable<SelectListItem> SelectNimiList = from l in KokoNimi
+                                                             select new SelectListItem
+                                                             {
+                                                                 Value = l.LainaajaID.ToString(),
+                                                                 Text = l.Etunimi + " " + l.Sukunimi
+                                                             };
+                ViewBag.LainaajaID = new SelectList(SelectNimiList, "Value", "Text");
+                //ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
+
+                ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi");
+
+                var KokoVarasto = db.Varastot;
+                IEnumerable<SelectListItem> SelectVarastoList = from v in KokoVarasto
+                                                             select new SelectListItem
+                                                             {
+                                                                 Value = v.VarastoID.ToString(),
+                                                                 Text = v.Varastopaikka + " " + v.Numero
+                                                             };
+                ViewBag.VarastoID = new SelectList(SelectVarastoList, "Value", "Text");
+                //ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
+                return View();
+            }
+
         }
 
         // POST: Lainaukset/Create

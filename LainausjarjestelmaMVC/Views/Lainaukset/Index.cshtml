@@ -1,21 +1,24 @@
 ﻿@model IEnumerable<LainausjarjestelmaMVC.Models.Lainaukset>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lainaukset";
 }
+<br />
+<h2>Lainaukset</h2>
 
-<h2>Index</h2>
-
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Tuote)
+            @Html.DisplayNameFor(model => model.Tuotteet.Nimi)
         </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Varastopaikka)
+        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Lainaaja)
+            @Html.DisplayNameFor(model => model.Lainaajat.Sukunimi)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Lainauspaiva)
@@ -23,53 +26,38 @@
         <th>
             @Html.DisplayNameFor(model => model.Palautuspaiva)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Varastopaikka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lainaajat.Etunimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tuotteet.Nimi)
-        </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Varastot.Varastopaikka)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tuote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lainaaja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lainauspaiva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Palautuspaiva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Varastopaikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lainaajat.Etunimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LainausID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LainausID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LainausID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
+    </td>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.Varastopaikka)
+    </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.Lainaajat.Sukunimi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lainauspaiva)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Palautuspaiva)
+    </td>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
+    </td>*@
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.LainausID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.LainausID }) |*@
+        @Html.ActionLink("Palauta", "Delete", new { id = item.LainausID }, new { @class = "btn btn-secondary btn-sm" })
+    </td>
+</tr>
 }
 
 </table>

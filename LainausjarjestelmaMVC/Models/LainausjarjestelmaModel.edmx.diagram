@@ -16,6 +16,7 @@
         <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Tuotteet" ManuallyRouted="false" />
         <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Varastot" ManuallyRouted="false" />
         <AssociationConnector Association="LainausjarjestelmaModel.FK_Tuotteet_Varastot" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainat" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

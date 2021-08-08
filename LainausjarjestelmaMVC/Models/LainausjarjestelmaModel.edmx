@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LainausjarjestelmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LainausjarjestelmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Lainaajat">
           <Key>
             <PropertyRef Name="LainaajaID" />
@@ -15,6 +15,16 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Puhelinnumero" Type="nvarchar" MaxLength="15" />
           <Property Name="LoginID" Type="int" />
+        </EntityType>
+        <EntityType Name="Lainat">
+          <Key>
+            <PropertyRef Name="lainaid" />
+          </Key>
+          <Property Name="lainaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tuoteid" Type="nvarchar" MaxLength="50" />
+          <Property Name="lainaajaid" Type="int" />
+          <Property Name="lainapvm" Type="date" />
+          <Property Name="palautuspvm" Type="date" />
         </EntityType>
         <EntityType Name="Lainaukset">
           <Key>
@@ -137,6 +147,7 @@
         </Association>
         <EntityContainer Name="LainausjarjestelmaModelStoreContainer">
           <EntitySet Name="Lainaajat" EntityType="Self.Lainaajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lainat" EntityType="Self.Lainat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lainaukset" EntityType="Self.Lainaukset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tuotteet" EntityType="Self.Tuotteet" Schema="dbo" store:Type="Tables" />
@@ -166,8 +177,7 @@
             <End Role="Tuotteet" EntitySet="Tuotteet" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LainausjarjestelmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -343,7 +353,18 @@
             <End Role="Varastot" EntitySet="Varastot" />
             <End Role="Tuotteet" EntitySet="Tuotteet" />
           </AssociationSet>
+          <EntitySet Name="Lainat" EntityType="LainausjarjestelmaModel.Lainat" />
         </EntityContainer>
+        <EntityType Name="Lainat">
+          <Key>
+            <PropertyRef Name="lainaid" />
+          </Key>
+          <Property Name="lainaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tuoteid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lainaajaid" Type="Int32" />
+          <Property Name="lainapvm" Type="DateTime" Precision="0" />
+          <Property Name="palautuspvm" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -410,6 +431,17 @@
                 <ScalarProperty Name="VarastoID" ColumnName="VarastoID" />
                 <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lainat">
+            <EntityTypeMapping TypeName="LainausjarjestelmaModel.Lainat">
+              <MappingFragment StoreEntitySet="Lainat">
+                <ScalarProperty Name="palautuspvm" ColumnName="palautuspvm" />
+                <ScalarProperty Name="lainapvm" ColumnName="lainapvm" />
+                <ScalarProperty Name="lainaajaid" ColumnName="lainaajaid" />
+                <ScalarProperty Name="tuoteid" ColumnName="tuoteid" />
+                <ScalarProperty Name="lainaid" ColumnName="lainaid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
