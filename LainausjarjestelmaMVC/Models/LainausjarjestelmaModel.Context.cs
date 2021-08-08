@@ -26,10 +26,10 @@ namespace LainausjarjestelmaMVC.Models
         }
     
         public virtual DbSet<Lainaajat> Lainaajat { get; set; }
+        public virtual DbSet<Lainat> Lainat { get; set; }
         public virtual DbSet<Lainaukset> Lainaukset { get; set; }
         public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Tuotteet> Tuotteet { get; set; }
         public virtual DbSet<Varastot> Varastot { get; set; }
-        public virtual DbSet<Lainat> Lainat { get; set; }
     }
 }
