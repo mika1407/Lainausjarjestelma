@@ -17,9 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins
         public ActionResult Index()
         {
-            if (Session["Email"] == null)
+            if (Session["Admin"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
                 return RedirectToAction("Login", "Home");
             }
             else
@@ -53,11 +52,9 @@ namespace LainausjarjestelmaMVC.Controllers
         }
 
         // POST: Logins/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoginID,Email,Salasana,Kirjautumisvirhe")] Logins logins)
+        public ActionResult Create([Bind(Include = "LoginID,Email,Salasana,Kirjautumisvirhe,Admin")] Logins logins)
         {
             if (ModelState.IsValid)
             {
@@ -86,11 +83,9 @@ namespace LainausjarjestelmaMVC.Controllers
         }
 
         // POST: Logins/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LoginID,Email,Salasana,Kirjautumisvirhe")] Logins logins)
+        public ActionResult Edit([Bind(Include = "LoginID,Email,Salasana,Kirjautumisvirhe,Admin")] Logins logins)
         {
             if (ModelState.IsValid)
             {

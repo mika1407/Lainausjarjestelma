@@ -17,9 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot
         public ActionResult Index()
         {
-            if (Session["Email"] == null)
+            if (Session["Admin"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
                 return RedirectToAction("Login", "Home");
             }
             else

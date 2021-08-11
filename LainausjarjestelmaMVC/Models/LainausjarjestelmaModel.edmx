@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LainausjarjestelmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LainausjarjestelmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Lainaajat">
           <Key>
             <PropertyRef Name="LainaajaID" />
@@ -15,16 +15,6 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Puhelinnumero" Type="nvarchar" MaxLength="15" />
           <Property Name="LoginID" Type="int" />
-        </EntityType>
-        <EntityType Name="Lainat">
-          <Key>
-            <PropertyRef Name="lainaid" />
-          </Key>
-          <Property Name="lainaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tuoteid" Type="nvarchar" MaxLength="50" />
-          <Property Name="lainaajaid" Type="int" />
-          <Property Name="lainapvm" Type="date" />
-          <Property Name="palautuspvm" Type="date" />
         </EntityType>
         <EntityType Name="Lainaukset">
           <Key>
@@ -48,6 +38,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Salasana" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Kirjautumisvirhe" Type="nvarchar" MaxLength="50" />
+          <Property Name="Admin" Type="bit" />
         </EntityType>
         <EntityType Name="Tuotteet">
           <Key>
@@ -147,7 +138,6 @@
         </Association>
         <EntityContainer Name="LainausjarjestelmaModelStoreContainer">
           <EntitySet Name="Lainaajat" EntityType="Self.Lainaajat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Lainat" EntityType="Self.Lainat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lainaukset" EntityType="Self.Lainaukset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tuotteet" EntityType="Self.Tuotteet" Schema="dbo" store:Type="Tables" />
@@ -177,11 +167,41 @@
             <End Role="Tuotteet" EntitySet="Tuotteet" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LainausjarjestelmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LainausjarjestelmaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lainaajat" EntityType="LainausjarjestelmaModel.Lainaajat" />
+          <EntitySet Name="Lainaukset" EntityType="LainausjarjestelmaModel.Lainaukset" />
+          <EntitySet Name="Logins" EntityType="LainausjarjestelmaModel.Logins" />
+          <EntitySet Name="Tuotteet" EntityType="LainausjarjestelmaModel.Tuotteet" />
+          <EntitySet Name="Varastot" EntityType="LainausjarjestelmaModel.Varastot" />
+          <AssociationSet Name="FK_Lainaajat_Logins" Association="LainausjarjestelmaModel.FK_Lainaajat_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Lainaajat" EntitySet="Lainaajat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lainaukset_Lainaajat" Association="LainausjarjestelmaModel.FK_Lainaukset_Lainaajat">
+            <End Role="Lainaajat" EntitySet="Lainaajat" />
+            <End Role="Lainaukset" EntitySet="Lainaukset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tuotteet_Lainaajat" Association="LainausjarjestelmaModel.FK_Tuotteet_Lainaajat">
+            <End Role="Lainaajat" EntitySet="Lainaajat" />
+            <End Role="Tuotteet" EntitySet="Tuotteet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lainaukset_Tuotteet" Association="LainausjarjestelmaModel.FK_Lainaukset_Tuotteet">
+            <End Role="Tuotteet" EntitySet="Tuotteet" />
+            <End Role="Lainaukset" EntitySet="Lainaukset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lainaukset_Varastot" Association="LainausjarjestelmaModel.FK_Lainaukset_Varastot">
+            <End Role="Varastot" EntitySet="Varastot" />
+            <End Role="Lainaukset" EntitySet="Lainaukset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tuotteet_Varastot" Association="LainausjarjestelmaModel.FK_Tuotteet_Varastot">
+            <End Role="Varastot" EntitySet="Varastot" />
+            <End Role="Tuotteet" EntitySet="Tuotteet" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Lainaajat">
           <Key>
             <PropertyRef Name="LainaajaID" />
@@ -192,19 +212,9 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Puhelinnumero" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="LoginID" Type="Int32" />
-          <NavigationProperty Name="Logins" Relationship="Self.FK_Lainaajat_Logins" FromRole="Lainaajat" ToRole="Logins" />
-          <NavigationProperty Name="Lainaukset" Relationship="Self.FK_Lainaukset_Lainaajat" FromRole="Lainaajat" ToRole="Lainaukset" />
-          <NavigationProperty Name="Tuotteet" Relationship="Self.FK_Tuotteet_Lainaajat" FromRole="Lainaajat" ToRole="Tuotteet" />
-        </EntityType>
-        <EntityType Name="Lainat">
-          <Key>
-            <PropertyRef Name="lainaid" />
-          </Key>
-          <Property Name="lainaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tuoteid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lainaajaid" Type="Int32" />
-          <Property Name="lainapvm" Type="DateTime" Precision="0" />
-          <Property Name="palautuspvm" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Logins" Relationship="LainausjarjestelmaModel.FK_Lainaajat_Logins" FromRole="Lainaajat" ToRole="Logins" />
+          <NavigationProperty Name="Lainaukset" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Lainaajat" FromRole="Lainaajat" ToRole="Lainaukset" />
+          <NavigationProperty Name="Tuotteet" Relationship="LainausjarjestelmaModel.FK_Tuotteet_Lainaajat" FromRole="Lainaajat" ToRole="Tuotteet" />
         </EntityType>
         <EntityType Name="Lainaukset">
           <Key>
@@ -219,19 +229,20 @@
           <Property Name="TuoteID" Type="Int32" />
           <Property Name="LainaajaID" Type="Int32" />
           <Property Name="VarastoID" Type="Int32" />
-          <NavigationProperty Name="Lainaajat" Relationship="Self.FK_Lainaukset_Lainaajat" FromRole="Lainaukset" ToRole="Lainaajat" />
-          <NavigationProperty Name="Tuotteet" Relationship="Self.FK_Lainaukset_Tuotteet" FromRole="Lainaukset" ToRole="Tuotteet" />
-          <NavigationProperty Name="Varastot" Relationship="Self.FK_Lainaukset_Varastot" FromRole="Lainaukset" ToRole="Varastot" />
+          <NavigationProperty Name="Lainaajat" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Lainaajat" FromRole="Lainaukset" ToRole="Lainaajat" />
+          <NavigationProperty Name="Tuotteet" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Tuotteet" FromRole="Lainaukset" ToRole="Tuotteet" />
+          <NavigationProperty Name="Varastot" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Varastot" FromRole="Lainaukset" ToRole="Varastot" />
         </EntityType>
         <EntityType Name="Logins">
           <Key>
             <PropertyRef Name="LoginID" />
           </Key>
           <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Salasana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salasana" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Kirjautumisvirhe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Lainaajat" Relationship="Self.FK_Lainaajat_Logins" FromRole="Logins" ToRole="Lainaajat" />
+          <Property Name="Admin" Type="Boolean" />
+          <NavigationProperty Name="Lainaajat" Relationship="LainausjarjestelmaModel.FK_Lainaajat_Logins" FromRole="Logins" ToRole="Lainaajat" />
         </EntityType>
         <EntityType Name="Tuotteet">
           <Key>
@@ -248,9 +259,9 @@
           <Property Name="Varastopaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LainaajaID" Type="Int32" />
           <Property Name="VarastoID" Type="Int32" />
-          <NavigationProperty Name="Lainaajat" Relationship="Self.FK_Tuotteet_Lainaajat" FromRole="Tuotteet" ToRole="Lainaajat" />
-          <NavigationProperty Name="Lainaukset" Relationship="Self.FK_Lainaukset_Tuotteet" FromRole="Tuotteet" ToRole="Lainaukset" />
-          <NavigationProperty Name="Varastot" Relationship="Self.FK_Tuotteet_Varastot" FromRole="Tuotteet" ToRole="Varastot" />
+          <NavigationProperty Name="Lainaajat" Relationship="LainausjarjestelmaModel.FK_Tuotteet_Lainaajat" FromRole="Tuotteet" ToRole="Lainaajat" />
+          <NavigationProperty Name="Lainaukset" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Tuotteet" FromRole="Tuotteet" ToRole="Lainaukset" />
+          <NavigationProperty Name="Varastot" Relationship="LainausjarjestelmaModel.FK_Tuotteet_Varastot" FromRole="Tuotteet" ToRole="Varastot" />
         </EntityType>
         <EntityType Name="Varastot">
           <Key>
@@ -259,12 +270,12 @@
           <Property Name="VarastoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Varastopaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Lainaukset" Relationship="Self.FK_Lainaukset_Varastot" FromRole="Varastot" ToRole="Lainaukset" />
-          <NavigationProperty Name="Tuotteet" Relationship="Self.FK_Tuotteet_Varastot" FromRole="Varastot" ToRole="Tuotteet" />
+          <NavigationProperty Name="Lainaukset" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Varastot" FromRole="Varastot" ToRole="Lainaukset" />
+          <NavigationProperty Name="Tuotteet" Relationship="LainausjarjestelmaModel.FK_Tuotteet_Varastot" FromRole="Varastot" ToRole="Tuotteet" />
         </EntityType>
         <Association Name="FK_Lainaajat_Logins">
-          <End Role="Logins" Type="Self.Logins" Multiplicity="0..1" />
-          <End Role="Lainaajat" Type="Self.Lainaajat" Multiplicity="*" />
+          <End Type="LainausjarjestelmaModel.Logins" Role="Logins" Multiplicity="0..1" />
+          <End Type="LainausjarjestelmaModel.Lainaajat" Role="Lainaajat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Logins">
               <PropertyRef Name="LoginID" />
@@ -275,8 +286,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lainaukset_Lainaajat">
-          <End Role="Lainaajat" Type="Self.Lainaajat" Multiplicity="0..1" />
-          <End Role="Lainaukset" Type="Self.Lainaukset" Multiplicity="*" />
+          <End Type="LainausjarjestelmaModel.Lainaajat" Role="Lainaajat" Multiplicity="0..1" />
+          <End Type="LainausjarjestelmaModel.Lainaukset" Role="Lainaukset" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lainaajat">
               <PropertyRef Name="LainaajaID" />
@@ -287,8 +298,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tuotteet_Lainaajat">
-          <End Role="Lainaajat" Type="Self.Lainaajat" Multiplicity="0..1" />
-          <End Role="Tuotteet" Type="Self.Tuotteet" Multiplicity="*" />
+          <End Type="LainausjarjestelmaModel.Lainaajat" Role="Lainaajat" Multiplicity="0..1" />
+          <End Type="LainausjarjestelmaModel.Tuotteet" Role="Tuotteet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lainaajat">
               <PropertyRef Name="LainaajaID" />
@@ -299,8 +310,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lainaukset_Tuotteet">
-          <End Role="Tuotteet" Type="Self.Tuotteet" Multiplicity="0..1" />
-          <End Role="Lainaukset" Type="Self.Lainaukset" Multiplicity="*" />
+          <End Type="LainausjarjestelmaModel.Tuotteet" Role="Tuotteet" Multiplicity="0..1" />
+          <End Type="LainausjarjestelmaModel.Lainaukset" Role="Lainaukset" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tuotteet">
               <PropertyRef Name="TuoteID" />
@@ -311,8 +322,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lainaukset_Varastot">
-          <End Role="Varastot" Type="Self.Varastot" Multiplicity="0..1" />
-          <End Role="Lainaukset" Type="Self.Lainaukset" Multiplicity="*" />
+          <End Type="LainausjarjestelmaModel.Varastot" Role="Varastot" Multiplicity="0..1" />
+          <End Type="LainausjarjestelmaModel.Lainaukset" Role="Lainaukset" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Varastot">
               <PropertyRef Name="VarastoID" />
@@ -323,8 +334,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tuotteet_Varastot">
-          <End Role="Varastot" Type="Self.Varastot" Multiplicity="0..1" />
-          <End Role="Tuotteet" Type="Self.Tuotteet" Multiplicity="*" />
+          <End Type="LainausjarjestelmaModel.Varastot" Role="Varastot" Multiplicity="0..1" />
+          <End Type="LainausjarjestelmaModel.Tuotteet" Role="Tuotteet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Varastot">
               <PropertyRef Name="VarastoID" />
@@ -334,38 +345,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LainausjarjestelmaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Lainaajat" EntityType="Self.Lainaajat" />
-          <EntitySet Name="Lainat" EntityType="Self.Lainat" />
-          <EntitySet Name="Lainaukset" EntityType="Self.Lainaukset" />
-          <EntitySet Name="Logins" EntityType="Self.Logins" />
-          <EntitySet Name="Tuotteet" EntityType="Self.Tuotteet" />
-          <EntitySet Name="Varastot" EntityType="Self.Varastot" />
-          <AssociationSet Name="FK_Lainaajat_Logins" Association="Self.FK_Lainaajat_Logins">
-            <End Role="Logins" EntitySet="Logins" />
-            <End Role="Lainaajat" EntitySet="Lainaajat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lainaukset_Lainaajat" Association="Self.FK_Lainaukset_Lainaajat">
-            <End Role="Lainaajat" EntitySet="Lainaajat" />
-            <End Role="Lainaukset" EntitySet="Lainaukset" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tuotteet_Lainaajat" Association="Self.FK_Tuotteet_Lainaajat">
-            <End Role="Lainaajat" EntitySet="Lainaajat" />
-            <End Role="Tuotteet" EntitySet="Tuotteet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lainaukset_Tuotteet" Association="Self.FK_Lainaukset_Tuotteet">
-            <End Role="Tuotteet" EntitySet="Tuotteet" />
-            <End Role="Lainaukset" EntitySet="Lainaukset" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lainaukset_Varastot" Association="Self.FK_Lainaukset_Varastot">
-            <End Role="Varastot" EntitySet="Varastot" />
-            <End Role="Lainaukset" EntitySet="Lainaukset" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tuotteet_Varastot" Association="Self.FK_Tuotteet_Varastot">
-            <End Role="Varastot" EntitySet="Varastot" />
-            <End Role="Tuotteet" EntitySet="Tuotteet" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -375,74 +354,64 @@
           <EntitySetMapping Name="Lainaajat">
             <EntityTypeMapping TypeName="LainausjarjestelmaModel.Lainaajat">
               <MappingFragment StoreEntitySet="Lainaajat">
-                <ScalarProperty Name="LainaajaID" ColumnName="LainaajaID" />
-                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
-                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Puhelinnumero" ColumnName="Puhelinnumero" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Lainat">
-            <EntityTypeMapping TypeName="LainausjarjestelmaModel.Lainat">
-              <MappingFragment StoreEntitySet="Lainat">
-                <ScalarProperty Name="lainaid" ColumnName="lainaid" />
-                <ScalarProperty Name="tuoteid" ColumnName="tuoteid" />
-                <ScalarProperty Name="lainaajaid" ColumnName="lainaajaid" />
-                <ScalarProperty Name="lainapvm" ColumnName="lainapvm" />
-                <ScalarProperty Name="palautuspvm" ColumnName="palautuspvm" />
+                <ScalarProperty Name="Puhelinnumero" ColumnName="Puhelinnumero" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+                <ScalarProperty Name="LainaajaID" ColumnName="LainaajaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lainaukset">
             <EntityTypeMapping TypeName="LainausjarjestelmaModel.Lainaukset">
               <MappingFragment StoreEntitySet="Lainaukset">
-                <ScalarProperty Name="LainausID" ColumnName="LainausID" />
-                <ScalarProperty Name="Tuote" ColumnName="Tuote" />
-                <ScalarProperty Name="Lainaaja" ColumnName="Lainaaja" />
-                <ScalarProperty Name="Lainauspaiva" ColumnName="Lainauspaiva" />
-                <ScalarProperty Name="Palautuspaiva" ColumnName="Palautuspaiva" />
-                <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
-                <ScalarProperty Name="TuoteID" ColumnName="TuoteID" />
-                <ScalarProperty Name="LainaajaID" ColumnName="LainaajaID" />
                 <ScalarProperty Name="VarastoID" ColumnName="VarastoID" />
+                <ScalarProperty Name="LainaajaID" ColumnName="LainaajaID" />
+                <ScalarProperty Name="TuoteID" ColumnName="TuoteID" />
+                <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
+                <ScalarProperty Name="Palautuspaiva" ColumnName="Palautuspaiva" />
+                <ScalarProperty Name="Lainauspaiva" ColumnName="Lainauspaiva" />
+                <ScalarProperty Name="Lainaaja" ColumnName="Lainaaja" />
+                <ScalarProperty Name="Tuote" ColumnName="Tuote" />
+                <ScalarProperty Name="LainausID" ColumnName="LainausID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Logins">
             <EntityTypeMapping TypeName="LainausjarjestelmaModel.Logins">
               <MappingFragment StoreEntitySet="Logins">
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Salasana" ColumnName="Salasana" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
                 <ScalarProperty Name="Kirjautumisvirhe" ColumnName="Kirjautumisvirhe" />
+                <ScalarProperty Name="Salasana" ColumnName="Salasana" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tuotteet">
             <EntityTypeMapping TypeName="LainausjarjestelmaModel.Tuotteet">
               <MappingFragment StoreEntitySet="Tuotteet">
-                <ScalarProperty Name="TuoteID" ColumnName="TuoteID" />
-                <ScalarProperty Name="Nimi" ColumnName="Nimi" />
-                <ScalarProperty Name="Kotivarasto" ColumnName="Kotivarasto" />
-                <ScalarProperty Name="Kuva" ColumnName="Kuva" />
-                <ScalarProperty Name="Tila" ColumnName="Tila" />
-                <ScalarProperty Name="Lainaaja" ColumnName="Lainaaja" />
-                <ScalarProperty Name="Lainauspaiva" ColumnName="Lainauspaiva" />
-                <ScalarProperty Name="Palautuspaiva" ColumnName="Palautuspaiva" />
-                <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
-                <ScalarProperty Name="LainaajaID" ColumnName="LainaajaID" />
                 <ScalarProperty Name="VarastoID" ColumnName="VarastoID" />
+                <ScalarProperty Name="LainaajaID" ColumnName="LainaajaID" />
+                <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
+                <ScalarProperty Name="Palautuspaiva" ColumnName="Palautuspaiva" />
+                <ScalarProperty Name="Lainauspaiva" ColumnName="Lainauspaiva" />
+                <ScalarProperty Name="Lainaaja" ColumnName="Lainaaja" />
+                <ScalarProperty Name="Tila" ColumnName="Tila" />
+                <ScalarProperty Name="Kuva" ColumnName="Kuva" />
+                <ScalarProperty Name="Kotivarasto" ColumnName="Kotivarasto" />
+                <ScalarProperty Name="Nimi" ColumnName="Nimi" />
+                <ScalarProperty Name="TuoteID" ColumnName="TuoteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Varastot">
             <EntityTypeMapping TypeName="LainausjarjestelmaModel.Varastot">
               <MappingFragment StoreEntitySet="Varastot">
-                <ScalarProperty Name="VarastoID" ColumnName="VarastoID" />
-                <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
+                <ScalarProperty Name="VarastoID" ColumnName="VarastoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

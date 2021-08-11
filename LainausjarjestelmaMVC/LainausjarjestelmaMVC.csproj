@@ -129,7 +129,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LainaajatController.cs" />
-    <Compile Include="Controllers\LainatController.cs" />
     <Compile Include="Controllers\LainauksetController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\TuotteetController.cs" />
@@ -138,9 +137,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Lainaajat.cs">
-      <DependentUpon>LainausjarjestelmaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Lainat.cs">
       <DependentUpon>LainausjarjestelmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lainaukset.cs">
@@ -357,7 +353,6 @@
     <Content Include="Views\Lainaukset\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Tuotteet\Kuvat.cshtml" />
-    <Content Include="Views\Lainat\Index.cshtml" />
     <Content Include="Views\Home\Kirjautunut.cshtml" />
   </ItemGroup>
   <ItemGroup>

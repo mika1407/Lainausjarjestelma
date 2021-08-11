@@ -17,9 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet
         public ActionResult Index()
         {
-            if (Session["Email"] == null)
+            if (Session["Admin"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
                 return RedirectToAction("Login", "Home");
             }
             else
@@ -65,8 +64,17 @@ namespace LainausjarjestelmaMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.LoggedStatus = "In";
+            var KokoVarasto = db.Varastot;
+            IEnumerable<SelectListItem> SelectVarastoList = from v in KokoVarasto
+                                                            select new SelectListItem
+                                                            {
+                                                                Value = v.VarastoID.ToString(),
+                                                                Text = v.Varastopaikka + " " + v.Numero
+                                                            };
+            ViewBag.VarastoID = new SelectList(SelectVarastoList, "Value", "Text");
+
             ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
-            ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
+            //ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
             return View();
         }
 

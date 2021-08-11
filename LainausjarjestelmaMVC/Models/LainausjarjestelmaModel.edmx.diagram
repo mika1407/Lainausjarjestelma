@@ -5,18 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1d818972d47c416cb16a3fc2b9b144c2" Name="Diagram1">
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainaajat" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainat" Width="1.5" PointX="3.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainaukset" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Logins" Width="1.5" PointX="1.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Tuotteet" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Varastot" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaajat_Logins" ManuallyRouted="false" />
-        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Lainaajat" ManuallyRouted="false" />
-        <AssociationConnector Association="LainausjarjestelmaModel.FK_Tuotteet_Lainaajat" ManuallyRouted="false" />
-        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Tuotteet" ManuallyRouted="false" />
-        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Varastot" ManuallyRouted="false" />
-        <AssociationConnector Association="LainausjarjestelmaModel.FK_Tuotteet_Varastot" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainaajat" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainaukset" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Logins" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Tuotteet" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Varastot" Width="1.5" PointX="0.75" PointY="5.125" />
+        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaajat_Logins" />
+        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Lainaajat" />
+        <AssociationConnector Association="LainausjarjestelmaModel.FK_Tuotteet_Lainaajat" />
+        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Tuotteet" />
+        <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Varastot" />
+        <AssociationConnector Association="LainausjarjestelmaModel.FK_Tuotteet_Varastot" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

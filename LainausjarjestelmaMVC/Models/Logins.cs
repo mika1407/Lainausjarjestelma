@@ -23,14 +23,19 @@ namespace LainausjarjestelmaMVC.Models
     
         public int LoginID { get; set; }
 
+        //Määritetään muuttujan näyttönimi
         [Display(Name = "Sähköposti")]
+        //Määritetään väärän/puuttuvan sähköpostiosoitteen virheilmoitus
         [Required(ErrorMessage = "Anna sähköpostiosoite!")]
         public string Email { get; set; }
 
+        //Määritetään muuttujan näyttönimi
         [DataType(DataType.Password)]
+        //Määritetään väärän/puuttuvan salasanan virheilmoitus
         [Required(ErrorMessage = "Anna salasana!")]
         public string Salasana { get; set; }
         public string Kirjautumisvirhe { get; set; }
+        public Nullable<bool> Admin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lainaajat> Lainaajat { get; set; }

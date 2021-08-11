@@ -90,28 +90,49 @@ namespace LainausjarjestelmaMVC.Controllers
             LainausjarjestelmaEntities db = new LainausjarjestelmaEntities();
 
             //Haetaan Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ-kyselyllä
+
             var LoggedUser = db.Logins.SingleOrDefault(x => x.Email == LoginModel.Email && x.Salasana == LoginModel.Salasana);
-            if (LoggedUser != null)
-            {
-                ViewBag.LoginMessage = "Kirjautuminen onnistui.";
-                ViewBag.LoggedStatus = "In";
-                Session["Email"] = LoggedUser.Email;
-                return RedirectToAction("Index", "Home");
-            }
-            else
+
+            if (LoggedUser == null)
             {
                 ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
                 ViewBag.LoggedStatus = "Out";
                 LoginModel.Kirjautumisvirhe = "Tuntematon sähköpostiosoite tai salasana.";
                 return View("Login", LoginModel);
             }
+
+            else
+            {
+                {
+                //Onnistunut normaali käyttäjän kirjautuminen
+
+                if (LoggedUser.Admin == false)
+                    {
+                ViewBag.LoginMessage = "Kirjautuminen onnistui.";
+                ViewBag.LoggedStatus = "In";
+                Session["Email"] = LoggedUser.Email;
+                return RedirectToAction("Index", "Home");
+                    }
+
+                //Onnistunut admin käyttäjän kirjautuminen
+
+                else
+                    {
+                        Session["Admin"] = LoggedUser.Email;
+                        Session["Email"] = LoggedUser.Email;
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
         }
+
         public ActionResult LogOut()
         {
+            //Uloskirjautumisen jälkeen siirrytään pääsivulle
+
             Session.Abandon();
             ViewBag.LoggedStatus = "Out";
-            return RedirectToAction("Index", "Home"); //Uloskirjautumisen jälkeen pääsivulle
-
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat
         public ActionResult Index()
         {
-            if (Session["Email"] == null)
+            if (Session["Admin"] == null)
             {
                 ViewBag.LoggedStatus = "Out";
                 return RedirectToAction("Login", "Home");

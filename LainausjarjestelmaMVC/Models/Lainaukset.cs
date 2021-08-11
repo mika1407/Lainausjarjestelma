@@ -19,16 +19,17 @@ namespace LainausjarjestelmaMVC.Models
         public string Tuote { get; set; }
         public string Lainaaja { get; set; }
 
+        //M‰‰ritet‰‰n Lainausp‰iv‰n n‰yttˆnimi ja p‰iv‰m‰‰r‰n esitysmuoto
         [Display(Name = "Lainausp‰iv‰")]
         [DataType(DataType.Time)]
         [DisplayFormatAttribute(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> Lainauspaiva { get; set; }
 
+        //M‰‰ritet‰‰n Palautusp‰iv‰n n‰yttˆnimi ja p‰iv‰m‰‰r‰n esitysmuoto
         [Display(Name = "Palautusp‰iv‰")]
         [DataType(DataType.Time)]
         [DisplayFormatAttribute(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> Palautuspaiva { get; set; }
-
         public string Varastopaikka { get; set; }
         public Nullable<int> TuoteID { get; set; }
         public Nullable<int> LainaajaID { get; set; }

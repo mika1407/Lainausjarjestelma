@@ -22,6 +22,8 @@ namespace LainausjarjestelmaMVC.Models
         }
     
         public int TuoteID { get; set; }
+
+        //Määritetään muuttujan näyttönimi
         [Display(Name = "Tuote")]
         public string Nimi { get; set; }
         public string Kotivarasto { get; set; }
