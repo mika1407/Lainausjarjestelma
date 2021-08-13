@@ -28,7 +28,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
         }
 
-        // GET: Logins/Details/5
+        // GET: Logins/Details
         public ActionResult Details(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -66,7 +66,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(logins);
         }
 
-        // GET: Logins/Edit/5
+        // GET: Logins/Edit
         public ActionResult Edit(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -82,7 +82,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(logins);
         }
 
-        // POST: Logins/Edit/5
+        // POST: Logins/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LoginID,Email,Salasana,Kirjautumisvirhe,Admin")] Logins logins)
@@ -96,7 +96,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(logins);
         }
 
-        // GET: Logins/Delete/5
+        // GET: Logins/Delete
         public ActionResult Delete(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -112,7 +112,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(logins);
         }
 
-        // POST: Logins/Delete/5
+        // POST: Logins/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

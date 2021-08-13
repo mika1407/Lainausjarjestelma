@@ -13,11 +13,15 @@
         <div class="card mb-3">
             <h4 class="card-header">@tuote.Nimi</h4>
             <div class="card-body">
-                @*<h5 class="card-title">Kotivarasto: @tuote.Kotivarasto</h5>*@
-                <h6 class="card-text">Tila: @tuote.Tila</h6>
+                <h5 class="card-title">Kotivarasto: @tuote.Varastopaikka</h5>
+
             </div>
             <img style="height: 100%; width: 480px; display: block;" src="@tuote.Kuva" alt="@tuote.Kuva">
+
             <div class="card-body">
+                <h6 class="card-text">Tila: @tuote.Tila</h6>
+                <br />
+                <a href="~/Lainaukset/Create" class="btn btn-success">Lainaa</a>
             </div>
         </div>
             <div class="card-body">

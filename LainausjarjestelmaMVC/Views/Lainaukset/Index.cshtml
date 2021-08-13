@@ -7,16 +7,16 @@
 <h2>Lainaukset</h2>
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Lainaa tuote", "Create")
 </p>*@
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Tuotteet.Nimi)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.Varastopaikka)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Lainaajat.Sukunimi)
         </th>
@@ -26,9 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Palautuspaiva)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.Varastot.Varastopaikka)
-        </th>*@
+        </th>
         <th></th>
     </tr>
 
@@ -37,9 +37,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
     </td>
-    @*<td>
+    <td>
         @Html.DisplayFor(modelItem => item.Varastopaikka)
-    </td>*@
+    </td>
     <td>
         @Html.DisplayFor(modelItem => item.Lainaajat.Sukunimi)
     </td>
@@ -49,12 +49,12 @@
     <td>
         @Html.DisplayFor(modelItem => item.Palautuspaiva)
     </td>
-    @*<td>
+    <td>
         @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
-    </td>*@
+    </td>
     <td>
         @*@Html.ActionLink("Edit", "Edit", new { id = item.LainausID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.LainausID }) |*@
+        @Html.ActionLink("Kuvat", "Tuotteet", "Kuvat") |*@
         @Html.ActionLink("Palauta", "Delete", new { id = item.LainausID }, new { @class = "btn btn-secondary btn-sm" })
     </td>
 </tr>

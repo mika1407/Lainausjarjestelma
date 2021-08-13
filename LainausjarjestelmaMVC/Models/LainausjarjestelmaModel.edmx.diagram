@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="LainausjarjestelmaModel.Lainaukset" Width="1.5" PointX="5.25" PointY="4.5" />
         <EntityTypeShape EntityType="LainausjarjestelmaModel.Logins" Width="1.5" PointX="0.75" PointY="2" />
         <EntityTypeShape EntityType="LainausjarjestelmaModel.Tuotteet" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="LainausjarjestelmaModel.Varastot" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="LainausjarjestelmaModel.Varastot" Width="1.5" PointX="0.75" PointY="5" />
         <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaajat_Logins" />
         <AssociationConnector Association="LainausjarjestelmaModel.FK_Lainaukset_Lainaajat" />
         <AssociationConnector Association="LainausjarjestelmaModel.FK_Tuotteet_Lainaajat" />

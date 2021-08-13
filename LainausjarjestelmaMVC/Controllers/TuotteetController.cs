@@ -44,7 +44,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
         }
 
-        // GET: Tuotteet/Details/5
+        // GET: Tuotteet/Details
         public ActionResult Details(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -79,8 +79,6 @@ namespace LainausjarjestelmaMVC.Controllers
         }
 
         // POST: Tuotteet/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TuoteID,Nimi,Kotivarasto,Kuva,Tila,Lainaaja,Lainauspaiva,Palautuspaiva,Varastopaikka,LainaajaID,VarastoID")] Tuotteet tuotteet)
@@ -97,7 +95,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(tuotteet);
         }
 
-        // GET: Tuotteet/Edit/5
+        // GET: Tuotteet/Edit
         public ActionResult Edit(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -115,9 +113,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(tuotteet);
         }
 
-        // POST: Tuotteet/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Tuotteet/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TuoteID,Nimi,Kotivarasto,Kuva,Tila,Lainaaja,Lainauspaiva,Palautuspaiva,Varastopaikka,LainaajaID,VarastoID")] Tuotteet tuotteet)
@@ -133,7 +129,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(tuotteet);
         }
 
-        // GET: Tuotteet/Delete/5
+        // GET: Tuotteet/Delete
         public ActionResult Delete(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -149,7 +145,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(tuotteet);
         }
 
-        // POST: Tuotteet/Delete/5
+        // POST: Tuotteet/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

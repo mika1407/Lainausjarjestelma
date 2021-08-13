@@ -28,7 +28,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
         }
 
-        // GET: Varastot/Details/5
+        // GET: Varastot/Details
         public ActionResult Details(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -51,8 +51,6 @@ namespace LainausjarjestelmaMVC.Controllers
         }
 
         // POST: Varastot/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "VarastoID,Varastopaikka,Numero")] Varastot varastot)
@@ -67,7 +65,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(varastot);
         }
 
-        // GET: Varastot/Edit/5
+        // GET: Varastot/Edit
         public ActionResult Edit(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -83,9 +81,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(varastot);
         }
 
-        // POST: Varastot/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Varastot/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VarastoID,Varastopaikka,Numero")] Varastot varastot)
@@ -99,7 +95,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(varastot);
         }
 
-        // GET: Varastot/Delete/5
+        // GET: Varastot/Delete
         public ActionResult Delete(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -115,7 +111,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(varastot);
         }
 
-        // POST: Varastot/Delete/5
+        // POST: Varastot/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

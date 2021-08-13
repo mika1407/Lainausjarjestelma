@@ -30,7 +30,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
         }
 
-        // GET: Lainaukset/Details/5
+        // GET: Lainaukset/Details
         public ActionResult Details(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -65,9 +65,8 @@ namespace LainausjarjestelmaMVC.Controllers
                                                                  Text = l.Etunimi + " " + l.Sukunimi
                                                              };
                 ViewBag.LainaajaID = new SelectList(SelectNimiList, "Value", "Text");
-                //ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
 
-                ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi");
+                ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", "Tila"); //////TILA LISÄTTY
 
                 var KokoVarasto = db.Varastot;
                 IEnumerable<SelectListItem> SelectVarastoList = from v in KokoVarasto
@@ -77,21 +76,29 @@ namespace LainausjarjestelmaMVC.Controllers
                                                                  Text = v.Varastopaikka + " " + v.Numero
                                                              };
                 ViewBag.VarastoID = new SelectList(SelectVarastoList, "Value", "Text");
-                //ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
                 return View();
+
+
+
             }
 
         }
 
         // POST: Lainaukset/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LainausID,Tuote,Lainaaja,Lainauspaiva,Palautuspaiva,Varastopaikka,TuoteID,LainaajaID,VarastoID")] Lainaukset lainaukset)
         {
             if (ModelState.IsValid)
             {
+
+                Tuotteet tuote = (from t in db.Tuotteet
+                                  where t.TuoteID == lainaukset.TuoteID
+                                  select t).FirstOrDefault();
+
+                tuote.Tila = "Lainassa";
+                db.SaveChanges();
+
                 db.Lainaukset.Add(lainaukset);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,7 +110,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaukset);
         }
 
-        // GET: Lainaukset/Edit/5
+        // GET: Lainaukset/Edit
         public ActionResult Edit(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -122,9 +129,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaukset);
         }
 
-        // POST: Lainaukset/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Lainaukset/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LainausID,Tuote,Lainaaja,Lainauspaiva,Palautuspaiva,Varastopaikka,TuoteID,LainaajaID,VarastoID")] Lainaukset lainaukset)
@@ -141,7 +146,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaukset);
         }
 
-        // GET: Lainaukset/Delete/5
+        // GET: Lainaukset/Delete
         public ActionResult Delete(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -157,12 +162,21 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaukset);
         }
 
-        // POST: Lainaukset/Delete/5
+        // POST: Lainaukset/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             Lainaukset lainaukset = db.Lainaukset.Find(id);
+
+            Tuotteet tuote = (from t in db.Tuotteet
+                              where t.TuoteID == lainaukset.TuoteID
+                              select t).FirstOrDefault();
+
+            tuote.Tila = "Vapaa";
+            db.SaveChanges();
+
             db.Lainaukset.Remove(lainaukset);
             db.SaveChanges();
             return RedirectToAction("Index");

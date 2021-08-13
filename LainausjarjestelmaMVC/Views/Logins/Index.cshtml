@@ -23,23 +23,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Salasana)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Admin)
-    </td>
-    <td>
-        @Html.ActionLink("Muokkaa", "Edit", new { id = item.LoginID }) |
-        @*@Html.ActionLink("Yhteenveto", "Details", new { id=item.LoginID }) |*@
-        @Html.ActionLink("Poista", "Delete", new { id = item.LoginID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salasana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin)
+            </td>
+            <td>
+                @Html.ActionLink("Muokkaa", "Edit", new { id = item.LoginID }) |
+                @*@Html.ActionLink("Yhteenveto", "Details", new { id=item.LoginID }) |*@
+                @Html.ActionLink("Poista", "Delete", new { id = item.LoginID })
+            </td>
+        </tr>
+    }
 
 </table>

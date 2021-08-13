@@ -63,6 +63,7 @@
           <Property Name="VarastoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Varastopaikka" Type="nvarchar" MaxLength="50" />
           <Property Name="Numero" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lisatiedot" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Lainaajat_Logins">
           <End Role="Logins" Type="Self.Logins" Multiplicity="0..1" />
@@ -270,6 +271,7 @@
           <Property Name="VarastoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Varastopaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lisatiedot" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Lainaukset" Relationship="LainausjarjestelmaModel.FK_Lainaukset_Varastot" FromRole="Varastot" ToRole="Lainaukset" />
           <NavigationProperty Name="Tuotteet" Relationship="LainausjarjestelmaModel.FK_Tuotteet_Varastot" FromRole="Varastot" ToRole="Tuotteet" />
         </EntityType>
@@ -345,7 +347,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -409,6 +411,7 @@
           <EntitySetMapping Name="Varastot">
             <EntityTypeMapping TypeName="LainausjarjestelmaModel.Varastot">
               <MappingFragment StoreEntitySet="Varastot">
+                <ScalarProperty Name="Lisatiedot" ColumnName="Lisatiedot" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Varastopaikka" ColumnName="Varastopaikka" />
                 <ScalarProperty Name="VarastoID" ColumnName="VarastoID" />

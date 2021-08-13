@@ -30,7 +30,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
         }
 
-        // GET: Lainaajat/Details/5
+        // GET: Lainaajat/Details
         public ActionResult Details(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -55,8 +55,6 @@ namespace LainausjarjestelmaMVC.Controllers
         }
 
         // POST: Lainaajat/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LainaajaID,Etunimi,Sukunimi,Email,Puhelinnumero,LoginID")] Lainaajat lainaajat)
@@ -72,7 +70,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaajat);
         }
 
-        // GET: Lainaajat/Edit/5
+        // GET: Lainaajat/Edit
         public ActionResult Edit(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -89,9 +87,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaajat);
         }
 
-        // POST: Lainaajat/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Lainaajat/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LainaajaID,Etunimi,Sukunimi,Email,Puhelinnumero,LoginID")] Lainaajat lainaajat)
@@ -106,7 +102,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaajat);
         }
 
-        // GET: Lainaajat/Delete/5
+        // GET: Lainaajat/Delete
         public ActionResult Delete(int? id)
         {
             ViewBag.LoggedStatus = "In";
@@ -122,7 +118,7 @@ namespace LainausjarjestelmaMVC.Controllers
             return View(lainaajat);
         }
 
-        // POST: Lainaajat/Delete/5
+        // POST: Lainaajat/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

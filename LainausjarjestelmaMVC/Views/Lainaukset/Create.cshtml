@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    @*//Tähän alle tehdään kotivaraston -näkymä, joka muuttuu tuotteen mukaan automaattisesti
+    @*//Tähän alle pitäisi tehdään kotivaraston -näkymä, joka muuttuu tuotteen mukaan automaattisesti
         <div class="form-group">
             @Html.LabelFor(model => model.TuoteID, "Tuote", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -68,13 +68,14 @@
     <br />
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Lainaa" class="btn btn-info" />
+            <input type="submit" value="Lainaa" class="btn btn-success" />
         </div>
     </div>
 </div>
 }
 <br />
 <div>
+    @Html.ActionLink("Takaisin tuotelistaan", "Kuvat", "Tuotteet") |
     @Html.ActionLink("Takaisin lainauksiin", "Index")
 </div>
 
