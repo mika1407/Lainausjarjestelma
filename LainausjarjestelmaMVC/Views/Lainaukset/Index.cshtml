@@ -4,16 +4,24 @@
     ViewBag.Title = "Lainaukset";
 }
 
-@if (TempData["Message"] != null)
+@if (TempData["onnistui"] != null)
 {
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <h4 class="alert-heading">LAINAUS ONNISTUI!</h4>
+        <br />
+        <p class="mb-0">@TempData["onnistui"].ToString()</p>
+    </div>
+}
 
+@if (TempData["epaonnistui"] != null)
+{
     <div class="alert alert-dismissible alert-warning">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">LAINAUS EPÄONNISTUI!</h4>
         <br />
-        <p class="mb-0">@TempData["Message"].ToString() <a href="~/Lainaukset/Create">Palaa tästä lainaamaan</a>.
+        <p class="mb-0">@TempData["epaonnistui"].ToString() <a href="~/Lainaukset/Create">Palaa tästä lainaamaan</a>.</p>
     </div>
-
 }
 
 <br />
@@ -44,26 +52,26 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Lainaajat.Sukunimi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Lainauspaiva)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Palautuspaiva)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
-    </td>
-    <td>
-        @Html.ActionLink("Palauta", "Delete", new { id = item.LainausID }, new { @class = "btn btn-secondary btn-sm" })
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lainaajat.Sukunimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lainauspaiva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Palautuspaiva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
+            </td>
+            <td>
+                @Html.ActionLink("Palauta", "Delete", new { id = item.LainausID }, new { @class = "btn btn-secondary btn-sm" })
+            </td>
+        </tr>
 
     }
 

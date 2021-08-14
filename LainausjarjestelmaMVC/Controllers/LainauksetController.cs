@@ -102,10 +102,11 @@ namespace LainausjarjestelmaMVC.Controllers
                     //db.SaveChanges();
                     db.Lainaukset.Add(lainaukset);
                     db.SaveChanges();
+                    TempData["onnistui"] = "Muistathan palauttaa tuotteen ajoissa. Kiitos!";
                     return RedirectToAction("Index");
                 }
                 else
-                    TempData["Message"] = "Valitsemasi tuote on jo lainassa! Tarkasta voimassa olevat lainaukset alta. ";
+                    TempData["epaonnistui"] = "Valitsemasi tuote on jo lainassa! Tarkasta voimassa olevat lainaukset alta.";
                 return RedirectToAction("Index");
             }
 
