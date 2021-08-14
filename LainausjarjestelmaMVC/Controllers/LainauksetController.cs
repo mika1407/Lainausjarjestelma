@@ -96,11 +96,16 @@ namespace LainausjarjestelmaMVC.Controllers
                                   where t.TuoteID == lainaukset.TuoteID
                                   select t).FirstOrDefault();
 
-                tuote.Tila = "Lainassa";
-                db.SaveChanges();
-
-                db.Lainaukset.Add(lainaukset);
-                db.SaveChanges();
+                if (tuote.Tila == "Vapaa")
+                {
+                    tuote.Tila = "Lainassa";
+                    //db.SaveChanges();
+                    db.Lainaukset.Add(lainaukset);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                    TempData["Message"] = "Valitsemasi tuote on jo lainassa! Tarkasta voimassa olevat lainaukset alta. ";
                 return RedirectToAction("Index");
             }
 

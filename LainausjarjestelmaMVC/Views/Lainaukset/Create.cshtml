@@ -22,16 +22,6 @@
             @Html.ValidationMessageFor(model => model.TuoteID, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    @*//Tähän alle pitäisi tehdään kotivaraston -näkymä, joka muuttuu tuotteen mukaan automaattisesti
-        <div class="form-group">
-            @Html.LabelFor(model => model.TuoteID, "Tuote", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TuoteID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TuoteID, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
     <br />
     <div class="form-group">
         @Html.LabelFor(model => model.LainaajaID, "Lainaaja", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -76,7 +66,7 @@
 <br />
 <div>
     @Html.ActionLink("Takaisin tuotelistaan", "Kuvat", "Tuotteet") |
-    @Html.ActionLink("Takaisin lainauksiin", "Index")
+    @Html.ActionLink("Tarkasta voimassaoleva lainaukset", "Index")
 </div>
 
 @section Scripts {
