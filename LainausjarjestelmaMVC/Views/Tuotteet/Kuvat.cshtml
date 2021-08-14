@@ -2,29 +2,29 @@
     ViewBag.Title = "Lainattavat tuotteet";
 }
 
-<div class="container-fluid" >
+<div class="container-fluid" align="center">
     <br>
     <h2>Lainattavat tuotteet</h2>
     <br>
-    <div class="row">
+    <div class="row" align="center">
 
         @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
         {
-        <div class="card mb-3" style="max-width: 50%; height: auto;">
+        <div class="card mb-3" style="max-width: 39%; height: auto;">
             <h4 class="card-header">@tuote.Nimi</h4>
-            <div class="card-body">
-                <h5 class="card-title">Kotivarasto: @tuote.Varastopaikka</h5>
-
+            <h5 class="card-title">Kotivarasto: @tuote.Varastopaikka</h5>
+            
+            <div class="containerkuva" align="center" style="max-width:100%; height:auto;">
+                <a href="~/Lainaukset/Create" class="btn btn-success"><b>Lainaa</b></a>
+                    <img style="height: 100%; width: 360px; " src="@tuote.Kuva" alt="@tuote.Kuva">
+                
             </div>
-            <a href="~/Lainaukset/Create">
-                <img style="height: 100%; width: 360px; " src="@tuote.Kuva" alt="@tuote.Kuva">
-            </a>
             @*<img style="height: 100%; width: 360px; display: block;" src="@tuote.Kuva" alt="@tuote.Kuva">*@
+
 
             <div class="card-body">
                 <h6 class="card-text">Tila: @tuote.Tila</h6>
                 <br />
-                @*<a href="~/Lainaukset/Create" class="btn btn-success">Lainaa</a>*@
             </div>
         </div>
             <div class="card-body">
