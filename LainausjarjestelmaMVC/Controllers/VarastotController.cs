@@ -17,6 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot
         public ActionResult Index()
         {
+            //Kirjautumisen tarkistus
+
             if (Session["Admin"] == null)
             {
                 return RedirectToAction("Login", "Home");

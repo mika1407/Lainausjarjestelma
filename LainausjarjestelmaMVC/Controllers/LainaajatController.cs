@@ -17,6 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat
         public ActionResult Index()
         {
+            //Kirjautumisen tarkistus
+
             if (Session["Admin"] == null)
             {
                 ViewBag.LoggedStatus = "Out";

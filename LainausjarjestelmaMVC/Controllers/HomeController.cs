@@ -14,6 +14,8 @@ namespace LainausjarjestelmaMVC.Controllers
     {
         public ActionResult Index()
         {
+            //Kirjautumisen tarkistuksia
+
             if (Session["Email"] == null)
             {
                 ViewBag.LoggedStatus = "Out";
@@ -89,7 +91,7 @@ namespace LainausjarjestelmaMVC.Controllers
         {
             LainausjarjestelmaEntities db = new LainausjarjestelmaEntities();
 
-            //Haetaan Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ-kyselyllä
+            //Kirjautumistoiminto (Haetaan Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ-kyselyllä)
 
             var LoggedUser = db.Logins.SingleOrDefault(x => x.Email == LoginModel.Email && x.Salasana == LoginModel.Salasana);
 
@@ -104,7 +106,8 @@ namespace LainausjarjestelmaMVC.Controllers
             else
             {
                 {
-                //Onnistunut normaali käyttäjän kirjautuminen
+
+                //Onnistunut normaali käyttäjän kirjautuminen, jonka jälkeen siirrytään pääsivulle
 
                 if (LoggedUser.Admin == false)
                     {
@@ -114,7 +117,7 @@ namespace LainausjarjestelmaMVC.Controllers
                 return RedirectToAction("Index", "Home");
                     }
 
-                //Onnistunut admin käyttäjän kirjautuminen
+                //Onnistunut admin käyttäjän kirjautuminen, jonka jälkeen siirrytään pääsivulle
 
                 else
                     {
@@ -128,7 +131,7 @@ namespace LainausjarjestelmaMVC.Controllers
 
         public ActionResult LogOut()
         {
-            //Uloskirjautumisen jälkeen siirrytään pääsivulle
+            //Uloskirjautuminen, jonka jälkeen siirrytään pääsivulle
 
             Session.Abandon();
             ViewBag.LoggedStatus = "Out";

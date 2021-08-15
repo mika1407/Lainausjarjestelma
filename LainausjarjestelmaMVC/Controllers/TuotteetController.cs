@@ -17,6 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet
         public ActionResult Index()
         {
+            //Kirjautumisen tarkistus
+
             if (Session["Admin"] == null)
             {
                 return RedirectToAction("Login", "Home");
@@ -29,9 +31,10 @@ namespace LainausjarjestelmaMVC.Controllers
             }
         }
 
-        //Tuotekuvia pääsee selaamaan kirjautumatta
         public ActionResult Kuvat()
         {
+            //Tuotekuvat -sivua pääsee selaamaan kirjautumatta
+
             if (Session["Email"] == null)
             {
                 ViewBag.LoggedStatus = "Out";
@@ -64,6 +67,9 @@ namespace LainausjarjestelmaMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.LoggedStatus = "In";
+
+            //Yhdistetään Varastot-taulun varastopaikka ja -numero, käytetään pudotusvalikossa
+
             var KokoVarasto = db.Varastot;
             IEnumerable<SelectListItem> SelectVarastoList = from v in KokoVarasto
                                                             select new SelectListItem
@@ -74,7 +80,6 @@ namespace LainausjarjestelmaMVC.Controllers
             ViewBag.VarastoID = new SelectList(SelectVarastoList, "Value", "Text");
 
             ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
-            //ViewBag.VarastoID = new SelectList(db.Varastot, "VarastoID", "Varastopaikka");
             return View();
         }
 

@@ -17,6 +17,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset
         public ActionResult Index()
         {
+            //Kirjautumisen tarkistus
+
             if (Session["Email"] == null)
             {
                 ViewBag.LoggedStatus = "Out";
@@ -49,6 +51,8 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Create
         public ActionResult Create()
         {
+            //Kirjautumisen tarkistus
+
             if (Session["Email"] == null)
             {
                 ViewBag.LoggedStatus = "Out";
@@ -57,6 +61,9 @@ namespace LainausjarjestelmaMVC.Controllers
             else
             {
                 ViewBag.LoggedStatus = "In";
+
+                //Yhdistetään Lainaajat-taulun etunimi ja sukunimi, käytetään pudotusvalikossa
+
                 var KokoNimi = db.Lainaajat;
                 IEnumerable<SelectListItem> SelectNimiList = from l in KokoNimi
                                                              select new SelectListItem
@@ -66,7 +73,7 @@ namespace LainausjarjestelmaMVC.Controllers
                                                              };
                 ViewBag.LainaajaID = new SelectList(SelectNimiList, "Value", "Text");
 
-                ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", "Tila"); //////TILA LISÄTTY
+                //Yhdistetään Varastot-taulun varastopaikka ja -numero, käytetään pudotusvalikossa
 
                 var KokoVarasto = db.Varastot;
                 IEnumerable<SelectListItem> SelectVarastoList = from v in KokoVarasto
@@ -76,12 +83,10 @@ namespace LainausjarjestelmaMVC.Controllers
                                                                  Text = v.Varastopaikka + " " + v.Numero
                                                              };
                 ViewBag.VarastoID = new SelectList(SelectVarastoList, "Value", "Text");
+
+                ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", "Tila");
                 return View();
-
-
-
             }
-
         }
 
         // POST: Lainaukset/Create
@@ -91,6 +96,7 @@ namespace LainausjarjestelmaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Haetaan Tuotteet-taulun tuotteesta tilatieto, voidaanko tuote lainata. Mikäli tuote on vapaa, lainaus onnistuu ja tila muuttuu lainatuksi.
 
                 Tuotteet tuote = (from t in db.Tuotteet
                                   where t.TuoteID == lainaukset.TuoteID
@@ -99,15 +105,20 @@ namespace LainausjarjestelmaMVC.Controllers
                 if (tuote.Tila == "Vapaa")
                 {
                     tuote.Tila = "Lainassa";
-                    //db.SaveChanges();
                     db.Lainaukset.Add(lainaukset);
                     db.SaveChanges();
+
+                    //Onnistuneen lainauksen ponnahdusilmoitus
+
                     TempData["onnistui"] = "Muistathan palauttaa tuotteen ajoissa. Kiitos!";
                     return RedirectToAction("Index");
                 }
                 else
+
+                    //Epäonnistuneen lainauksen ponnahdusilmoitus
+
                     TempData["epaonnistui"] = "Valitsemasi tuote on jo lainassa! Tarkasta voimassa olevat lainaukset alta.";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
             }
 
             ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi", lainaukset.LainaajaID);
@@ -176,13 +187,14 @@ namespace LainausjarjestelmaMVC.Controllers
 
             Lainaukset lainaukset = db.Lainaukset.Find(id);
 
+            //Haetaan Tuotteet-taulun tuotteesta tilatieto ja muutetaan vapaaksi, jonka jälkeen lainaus poistetaan
+
             Tuotteet tuote = (from t in db.Tuotteet
                               where t.TuoteID == lainaukset.TuoteID
                               select t).FirstOrDefault();
 
             tuote.Tila = "Vapaa";
             db.SaveChanges();
-
             db.Lainaukset.Remove(lainaukset);
             db.SaveChanges();
             return RedirectToAction("Index");
