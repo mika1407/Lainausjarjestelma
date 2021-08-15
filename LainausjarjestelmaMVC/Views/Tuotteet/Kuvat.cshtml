@@ -3,7 +3,7 @@
 }
 
 <br>
-<h2>Lainattavat tuotteet</h2>
+<h2 style="margin-left:145px">Lainattavat tuotteet</h2>
 <br>
 <div class="mb-md-3"  style="max-width:50%">
     @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
@@ -13,12 +13,13 @@
         <h4 class="card-header" style="text-align:center">@tuote.Nimi</h4>
         @*<h5 class="card-title" style="margin-left:25px">Kotivarasto: @tuote.Varastopaikka</h5>*@
 
-        <div class="containerkuva" style=" max-width:50%">
-            <a href="~/Lainaukset/Create" class="btnkuva button"><b>Lainaa</b></a>
-            <img style="height: 100%; text-align:center; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
-            <br>
-            <h6 class="card-text">Tila: @tuote.Tila</h6>
-        </div>
+    <div class="containerkuva" style=" max-width:50%">
+        <a href="~/Lainaukset/Create" class="btnkuva button"><b>Lainaa</b></a>
+        <img style="height: 100%; text-align:center; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
+        <br>
+        <h6 class="card-text" style="padding:5px">Tila: @tuote.Tila</h6>
+        
+    </div>
 
     </div>
         <div class="card-body" style="text-align:center">
