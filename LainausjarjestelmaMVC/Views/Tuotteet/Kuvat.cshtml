@@ -5,10 +5,10 @@
 <br>
 <h2>Lainattavat tuotteet</h2>
 <br>
-<div class="d-sm-inline-block"  style="max-width:50%">
+<div class="mb-md-3"  style="max-width:50%">
     @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
     {
-    <div class="card-deck" style="max-width:100%">
+    <div class="card" style="width:500px; margin-left:auto" >
         
         <h4 class="card-header" style="text-align:center">@tuote.Nimi</h4>
         @*<h5 class="card-title" style="margin-left:25px">Kotivarasto: @tuote.Varastopaikka</h5>*@
@@ -21,7 +21,7 @@
         </div>
 
     </div>
-        <div class="card-body">
+        <div class="card-body" style="text-align:center">
             <a href="#" class="card-link">Takaisin ylös</a>
         </div>
     }

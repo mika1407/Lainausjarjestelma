@@ -11,22 +11,13 @@ namespace LainausjarjestelmaMVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Lainaukset
     {
         public int LainausID { get; set; }
         public string Tuote { get; set; }
         public string Lainaaja { get; set; }
-
-        [Display(Name = "Lainauspäivä")]
-        [DataType(DataType.Time)]
-        [DisplayFormatAttribute(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Lainauspaiva { get; set; }
-
-        [Display(Name = "Palautuspäivä")]
-        [DataType(DataType.Time)]
-        [DisplayFormatAttribute(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Palautuspaiva { get; set; }
         public string Varastopaikka { get; set; }
         public Nullable<int> TuoteID { get; set; }
