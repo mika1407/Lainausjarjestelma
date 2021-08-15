@@ -43,6 +43,40 @@
 *::after {
   box-sizing: border-box;
 }
+/*  OMAT TUODUT CONTAINERIT, NAPPI KUVAN PÄÄLLE Container needed to position the button. Adjust the width as needed */
+.containerkuva {
+    position: relative;
+    width: 50%;
+}
+
+    /* Make the image responsive */
+    .containerkuva img {
+        width: 100%;
+        height: auto;
+        
+    }
+
+    /* Style the button and place it in the middle of the container/image */
+    .containerkuva .btnkuva {
+        position: absolute;
+        max-width:auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: transparent;
+        color: white;
+        font-size: 10px;
+        padding: 12px 24px;
+        border: solid;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .containerkuva .btnkuva:hover {
+            background-color: yellowgreen;
+        }
+
 
 
 

@@ -2,31 +2,25 @@
     ViewBag.Title = "Lainattavat tuotteet";
 }
 
-<div class="container">
+<div class="container" style="max-width:30%">
     <br>
     <h2>Lainattavat tuotteet</h2>
     <br>
-    <div class="row">
+    <div class="card-columns">
 
         @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
         {
-        <div class="card mb-3">
-            <h4 class="card-header">@tuote.Nimi</h4>
-            <h5 class="card-title">Kotivarasto: @tuote.Varastopaikka</h5>
+            <div class="card">
+                <h4 class="card-header" style="text-align:left">@tuote.Nimi</h4>
+                <h5 class="card-title" style="text-align:left">Kotivarasto: @tuote.Varastopaikka</h5>
 
-            <div class="card-body">
-
-                <img style="height: 100%; width: 360px; " src="@tuote.Kuva" alt="@tuote.Kuva">
+                <div class="containerkuva" style=" max-width:100%">
+                    <a href="~/Lainaukset/Create" class="btnkuva button"><b>Lainaa</b></a>
+                    <img style="height: 100%; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
+                    <h6 class="card-text">Tila: @tuote.Tila</h6>
+                </div>
 
             </div>
-            
-            <a href="~/Lainaukset/Create" class="btn btn-success"><b>Lainaa</b></a>
-
-            <div class="card-body">
-                <h6 class="card-text">Tila: @tuote.Tila</h6>
-                <br />
-            </div>
-        </div>
             <div class="card-body">
                 <a href="#" class="card-link">Takaisin ylös</a>
             </div>
