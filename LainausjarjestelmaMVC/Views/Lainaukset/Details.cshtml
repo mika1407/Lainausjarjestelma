@@ -1,10 +1,12 @@
-﻿@model LainausjarjestelmaMVC.Models.Lainaukset
+﻿@*//TÄMÄ SIVU EI OLE KÄYTÖSSÄ TÄLLÄ HETKELLÄ!*@
+
+@model LainausjarjestelmaMVC.Models.Lainaukset
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Yhteenveto - Lainaukset";
 }
 
-<h2>Details</h2>
+<h2>Yhteenveto</h2>
 
 <div>
     <h4>Lainaukset</h4>
@@ -76,6 +78,7 @@
 
     </dl>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.LainausID }) |
     @Html.ActionLink("Back to List", "Index")

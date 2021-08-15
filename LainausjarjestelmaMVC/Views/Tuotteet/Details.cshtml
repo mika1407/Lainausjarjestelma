@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Yhteenveto - Tuote";
 }
+
 <br />
+
 <h2>Yhteenveto</h2>
 
 <div>
@@ -89,9 +91,9 @@
         <dd>
             @Html.DisplayFor(model => model.Varastot.Varastopaikka)
         </dd>
-
     </dl>
 </div>
+
 <p>
     <br />
     @Html.ActionLink("Muokkaa", "Edit", new { id = Model.TuoteID }) |

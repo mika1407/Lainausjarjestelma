@@ -1,9 +1,11 @@
 ﻿@model LainausjarjestelmaMVC.Models.Lainaukset
 
 @{
-    ViewBag.Title = "Palauta";
+    ViewBag.Title = "Palauta tuote";
 }
+
 <br />
+
 <h2>Palauta</h2>
 
 <div>
@@ -21,11 +23,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Varastopaikka)
+            @Html.DisplayNameFor(model => model.Tuotteet.Kotivarasto)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Varastopaikka)
+            @Html.DisplayFor(model => model.Tuotteet.Kotivarasto)
         </dd>
 
         <dt>
@@ -66,11 +68,13 @@
     {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Palauta" class="btn btn-secondary" />
-    <br />
-    <br />
-    @Html.ActionLink("Takaisin lainauksiin", "Index")
-</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Palauta" class="btn btn-secondary" />
+            <br />
+            <br />
+            @Html.ActionLink("Takaisin lainauksiin", "Index")
+        </div>
     }
+
 </div>

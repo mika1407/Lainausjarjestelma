@@ -4,6 +4,8 @@
     ViewBag.Title = "Lainaukset";
 }
 
+@*//Onnistuneen lainauksen ponnahdusilmoitus*@
+
 @if (TempData["onnistui"] != null)
 {
     <div class="alert alert-dismissible alert-success">
@@ -14,26 +16,33 @@
     </div>
 }
 
+@*//Epäonnistuneen lainauksen ponnahdusilmoitus*@
+
 @if (TempData["epaonnistui"] != null)
 {
     <div class="alert alert-dismissible alert-warning">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">LAINAUS EPÄONNISTUI!</h4>
         <br />
-        <p class="mb-0">@TempData["epaonnistui"].ToString() <a href="~/Lainaukset/Create">Palaa tästä lainaamaan</a>.</p>
+        <p class="mb-0">@TempData["epaonnistui"].ToString()</p>
     </div>
 }
 
 <br />
+
 <h2>Lainaukset</h2>
 
 <p>
     @Html.ActionLink("Lainaa tuote", "Create")
 </p>
+
 <table class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Tuotteet.Nimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tuotteet.Kotivarasto)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Lainaajat.Sukunimi)
@@ -55,6 +64,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tuotteet.Kotivarasto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Lainaajat.Sukunimi)

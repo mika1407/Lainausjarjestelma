@@ -14,9 +14,7 @@
     
 <div class="form-horizontal">
     <h4>Login</h4>
-
     <hr />
-
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.LoginID)
 
@@ -51,7 +49,6 @@
             <input type="submit" value="Tallenna" class="btn btn-outline-success" />
         </div>
     </div>
-
 </div>
 }
 
