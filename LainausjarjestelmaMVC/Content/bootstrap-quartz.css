@@ -47,12 +47,14 @@
 .containerkuva {
     position: relative;
     width: 50%;
+    left: 25%;
 }
 
     /* Make the image responsive */
     .containerkuva img {
         width: 100%;
         height: auto;
+        
         
     }
 
@@ -66,7 +68,7 @@
         -ms-transform: translate(-50%, -50%);
         background-color: transparent;
         color: white;
-        font-size: 10px;
+        font-size: 16px;
         padding: 12px 24px;
         border: solid;
         cursor: pointer;

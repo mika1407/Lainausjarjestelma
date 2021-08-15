@@ -2,29 +2,34 @@
     ViewBag.Title = "Lainattavat tuotteet";
 }
 
-<div class="container" style="max-width:30%">
-    <br>
-    <h2>Lainattavat tuotteet</h2>
-    <br>
-    <div class="card-columns">
+<br>
+<h2>Lainattavat tuotteet</h2>
+<br>
+<div class="d-sm-inline-block"  style="max-width:50%">
+    @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
+    {
+    <div class="card-deck" style="max-width:100%">
+        
+        <h4 class="card-header" style="text-align:center">@tuote.Nimi</h4>
+        @*<h5 class="card-title" style="margin-left:25px">Kotivarasto: @tuote.Varastopaikka</h5>*@
 
-        @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
-        {
-            <div class="card">
-                <h4 class="card-header" style="text-align:left">@tuote.Nimi</h4>
-                <h5 class="card-title" style="text-align:left">Kotivarasto: @tuote.Varastopaikka</h5>
-
-                <div class="containerkuva" style=" max-width:100%">
-                    <a href="~/Lainaukset/Create" class="btnkuva button"><b>Lainaa tuote</b></a>
-                    <img style="height: 100%; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
-                    <h6 class="card-text">Tila: @tuote.Tila</h6>
-                </div>
-
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Takaisin ylös</a>
-            </div>
-        }
+        <div class="containerkuva" style=" max-width:50%">
+            <a href="~/Lainaukset/Create" class="btnkuva button"><b>Lainaa</b></a>
+            <img style="height: 100%; text-align:center; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
+            <br>
+            <h6 class="card-text">Tila: @tuote.Tila</h6>
+        </div>
 
     </div>
+        <div class="card-body">
+            <a href="#" class="card-link">Takaisin ylös</a>
+        </div>
+    }
 </div>
+
+
+
+
+
+
+
