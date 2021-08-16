@@ -21,12 +21,12 @@ namespace LainausjarjestelmaMVC.Controllers
 
             if (Session["Admin"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return RedirectToAction("Login", "Home");
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Admin";
                 var lainaajat = db.Lainaajat.Include(l => l.Logins);
                 return View(lainaajat.ToList());
             }
@@ -35,7 +35,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Details
         public ActionResult Details(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -51,7 +51,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Create
         public ActionResult Create()
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             ViewBag.LoginID = new SelectList(db.Logins, "LoginID", "Email");
             return View();
         }
@@ -75,7 +75,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Edit
         public ActionResult Edit(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,7 +107,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaajat/Delete
         public ActionResult Delete(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -23,6 +23,8 @@ namespace LainausjarjestelmaMVC.Models
         }
     
         public int LainaajaID { get; set; }
+
+        [Display(Name = "Lainaajan nimi")]
         public string Etunimi { get; set; }
         public string Sukunimi { get; set; }
 

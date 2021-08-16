@@ -9,16 +9,15 @@
 <h2>Käyttäjät</h2>
 
 <p>
-    @Html.ActionLink("Lisää uusi", "Create")
+    @Html.ActionLink("LISÄÄ UUSI", "Create", "Lainaajat", new { @class = "btn btn-primary btn-sm" })
 </p>
 
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Etunimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sukunimi)
+            Nimi
+            @*@Html.DisplayNameFor(model => model.Etunimi)
+            @Html.DisplayNameFor(model => model.Sukunimi)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -33,8 +32,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Etunimi)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Sukunimi)
         </td>
         <td>
@@ -44,9 +41,8 @@
             @Html.DisplayFor(modelItem => item.Puhelinnumero)
         </td>
         <td>
-            @Html.ActionLink("Muokkaa", "Edit", new { id=item.LainaajaID }) |
-            @Html.ActionLink("Yhteenveto", "Details", new { id=item.LainaajaID }) |
-            @Html.ActionLink("Poista", "Delete", new { id=item.LainaajaID })
+            @Html.ActionLink("MUOKKAA", "Edit", new { id = item.LainaajaID }, new { @class = "btn btn-secondary btn-sm" })
+            @Html.ActionLink("POISTA", "Delete", new { id = item.LainaajaID }, new { @class = "btn btn-outline-danger btn-sm" })
         </td>
     </tr>
 }

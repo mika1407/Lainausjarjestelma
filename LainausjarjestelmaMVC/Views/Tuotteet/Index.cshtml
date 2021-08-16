@@ -9,7 +9,7 @@
 <h2>Tuotteet</h2>
 
 <p>
-    @Html.ActionLink("Lisää uusi", "Create")
+    @Html.ActionLink("LISÄÄ UUSI", "Create", "Tuotteet", new { @class = "btn btn-primary btn-sm" })
 </p>
 
 <table class="table table-hover">
@@ -20,59 +20,40 @@
         <th>
             @Html.DisplayNameFor(model => model.Kotivarasto)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.Kuva)
+            @Html.DisplayNameFor(model => model.Varastot.Varastopaikka)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Tila)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lainaaja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lainauspaiva)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Palautuspaiva)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Varastopaikka)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kotivarasto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kuva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tila)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lainaaja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lainauspaiva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Palautuspaiva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Varastopaikka)
-        </td>
-        <td>
-            @Html.ActionLink("Muokkaa", "Edit", new { id=item.TuoteID }) |
-            @Html.ActionLink("Yhteenveto", "Details", new { id=item.TuoteID }) |
-            @Html.ActionLink("Poista", "Delete", new { id=item.TuoteID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nimi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kotivarasto)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Varastot.Varastopaikka)
+        @Html.DisplayFor(modelItem => item.Varastot.Numero)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Tila)
+    </td>
+    <td>
+        @Html.ActionLink("MUOKKAA", "Edit", new { id = item.TuoteID }, new { @class = "btn btn-secondary btn-sm" })&nbsp;
+        @*@Html.ActionLink("LISÄTIETOJA", "Details", new { id = item.TuoteID }, new { @class = "btn btn-outline-light btn-sm" })&nbsp;*@
+        @Html.ActionLink("POISTA", "Delete", new { id = item.TuoteID }, new { @class = "btn btn-outline-danger btn-sm" })
+    </td>
+</tr>
 }
 
 </table>

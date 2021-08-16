@@ -21,12 +21,12 @@ namespace LainausjarjestelmaMVC.Controllers
 
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return RedirectToAction("Login", "Home");
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 var lainaukset = db.Lainaukset.Include(l => l.Lainaajat).Include(l => l.Tuotteet).Include(l => l.Varastot);
                 return View(lainaukset.ToList());
             }
@@ -35,7 +35,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Details
         public ActionResult Details(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Kirjautunut";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -55,12 +55,12 @@ namespace LainausjarjestelmaMVC.Controllers
 
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return RedirectToAction("Login", "Home");
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
 
                 //Yhdistetään Lainaajat-taulun etunimi ja sukunimi, käytetään pudotusvalikossa
 
@@ -110,7 +110,7 @@ namespace LainausjarjestelmaMVC.Controllers
 
                     //Onnistuneen lainauksen ponnahdusilmoitus
 
-                    TempData["onnistui"] = "Muistathan palauttaa tuotteen ajoissa. Kiitos!";
+                    TempData["onnistui"] = "Muistathan palauttaa tuotteen ajoissa sen Kotivarastoon. Kiitos!";
                     return RedirectToAction("Index");
                 }
                 else
@@ -130,7 +130,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Edit
         public ActionResult Edit(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Kirjautunut";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -166,7 +166,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Lainaukset/Delete
         public ActionResult Delete(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Kirjautunut";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

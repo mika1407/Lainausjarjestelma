@@ -9,7 +9,7 @@
 <h2>Loginit</h2>
 
 <p>
-    @Html.ActionLink("Lisää uusi", "Create")
+    @Html.ActionLink("LISÄÄ UUSI", "Create", "Logins", new { @class = "btn btn-primary btn-sm" })
 </p>
 
 <table class="table table-hover">
@@ -39,8 +39,8 @@
                 @Html.DisplayFor(modelItem => item.Admin)
             </td>
             <td>
-                @Html.ActionLink("Muokkaa", "Edit", new { id = item.LoginID }) |
-                @Html.ActionLink("Poista", "Delete", new { id = item.LoginID })
+                @Html.ActionLink("MUOKKAA", "Edit", new { id = item.LoginID }, new { @class = "btn btn-secondary btn-sm" })&nbsp;
+                @Html.ActionLink(" POISTA ", "Delete", new { id = item.LoginID }, new { @class = "btn btn-outline-danger btn-sm" })
             </td>
         </tr>
     }

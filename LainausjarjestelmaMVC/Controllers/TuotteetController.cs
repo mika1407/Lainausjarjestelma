@@ -25,7 +25,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Admin";
                 var tuotteet = db.Tuotteet.Include(t => t.Lainaajat).Include(t => t.Varastot);
                 return View(tuotteet.ToList());
             }
@@ -37,20 +37,21 @@ namespace LainausjarjestelmaMVC.Controllers
 
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return View(db.Tuotteet.ToList());
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 return View(db.Tuotteet.ToList());
             }
+
         }
 
         // GET: Tuotteet/Details
         public ActionResult Details(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -66,7 +67,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet/Create
         public ActionResult Create()
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
 
             //Yhdistetään Varastot-taulun varastopaikka ja -numero, käytetään pudotusvalikossa
 
@@ -103,7 +104,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet/Edit
         public ActionResult Edit(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -137,7 +138,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Tuotteet/Delete
         public ActionResult Delete(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

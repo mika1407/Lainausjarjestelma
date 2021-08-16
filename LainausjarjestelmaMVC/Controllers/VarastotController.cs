@@ -25,7 +25,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Admin";
                 return View(db.Varastot.ToList());
             }
         }
@@ -33,7 +33,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot/Details
         public ActionResult Details(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,7 +70,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot/Edit
         public ActionResult Edit(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,7 +100,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot/Delete
         public ActionResult Delete(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

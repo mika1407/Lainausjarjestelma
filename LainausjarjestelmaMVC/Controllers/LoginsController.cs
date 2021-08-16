@@ -25,7 +25,7 @@ namespace LainausjarjestelmaMVC.Controllers
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Admin";
                 return View(db.Logins.ToList());
             }
         }
@@ -33,7 +33,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Details
         public ActionResult Details(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,7 +49,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Create
         public ActionResult Create()
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Edit
         public ActionResult Edit(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,7 +101,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Logins/Delete
         public ActionResult Delete(int? id)
         {
-            ViewBag.LoggedStatus = "In";
+            ViewBag.LoggedStatus = "Admin";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

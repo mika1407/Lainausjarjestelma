@@ -18,12 +18,12 @@ namespace LainausjarjestelmaMVC.Controllers
 
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return View();
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 return RedirectToAction("Kirjautunut", "Home");
             }
         }
@@ -33,12 +33,12 @@ namespace LainausjarjestelmaMVC.Controllers
             ViewBag.Message = "Tietoa järjestelmästä.";
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return View();
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 return View();
             }
         }
@@ -48,12 +48,12 @@ namespace LainausjarjestelmaMVC.Controllers
             ViewBag.Message = "Ota yhteyttä.";
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return View();
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 return View();
             }
         }
@@ -62,12 +62,12 @@ namespace LainausjarjestelmaMVC.Controllers
         {
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return View();
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 return RedirectToAction("Kirjautunut", "Home");
             }
         }
@@ -76,12 +76,12 @@ namespace LainausjarjestelmaMVC.Controllers
         {
             if (Session["Email"] == null)
             {
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 return View();
             }
             else
             {
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 return View();
             }
         }
@@ -98,7 +98,7 @@ namespace LainausjarjestelmaMVC.Controllers
             if (LoggedUser == null)
             {
                 ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
-                ViewBag.LoggedStatus = "Out";
+                ViewBag.LoggedStatus = "Uloskirjautunut";
                 LoginModel.Kirjautumisvirhe = "Tuntematon sähköpostiosoite tai salasana.";
                 return View("Login", LoginModel);
             }
@@ -112,7 +112,7 @@ namespace LainausjarjestelmaMVC.Controllers
                 if (LoggedUser.Admin == false)
                     {
                 ViewBag.LoginMessage = "Kirjautuminen onnistui.";
-                ViewBag.LoggedStatus = "In";
+                ViewBag.LoggedStatus = "Kirjautunut";
                 Session["Email"] = LoggedUser.Email;
                 return RedirectToAction("Index", "Home");
                     }
@@ -134,7 +134,7 @@ namespace LainausjarjestelmaMVC.Controllers
             //Uloskirjautuminen, jonka jälkeen siirrytään pääsivulle
 
             Session.Abandon();
-            ViewBag.LoggedStatus = "Out";
+            ViewBag.LoggedStatus = "Uloskirjautunut";
             return RedirectToAction("Index", "Home");
         }
     }
