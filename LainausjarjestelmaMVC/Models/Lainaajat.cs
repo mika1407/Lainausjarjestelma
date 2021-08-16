@@ -11,7 +11,8 @@ namespace LainausjarjestelmaMVC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Lainaajat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,8 @@ namespace LainausjarjestelmaMVC.Models
         public int LainaajaID { get; set; }
         public string Etunimi { get; set; }
         public string Sukunimi { get; set; }
+
+        [Display(Name = "Sähköposti")]
         public string Email { get; set; }
         public string Puhelinnumero { get; set; }
         public Nullable<int> LoginID { get; set; }
