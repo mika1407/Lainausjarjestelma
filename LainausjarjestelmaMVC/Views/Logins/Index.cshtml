@@ -26,8 +26,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
+    @foreach (var item in Model.OrderBy(t => t.Email)) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -39,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Admin)
             </td>
             <td>
-                @Html.ActionLink("MUOKKAA", "Edit", new { id = item.LoginID }, new { @class = "btn btn-secondary btn-sm" })&nbsp;
+                @Html.ActionLink("MUOKKAA", "Edit", new { id = item.LoginID }, new { @class = "btn btn-outline-secondary btn-sm" })&nbsp;
                 @Html.ActionLink(" POISTA ", "Delete", new { id = item.LoginID }, new { @class = "btn btn-outline-danger btn-sm" })
             </td>
         </tr>

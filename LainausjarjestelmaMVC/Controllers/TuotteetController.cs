@@ -45,7 +45,6 @@ namespace LainausjarjestelmaMVC.Controllers
                 ViewBag.LoggedStatus = "Kirjautunut";
                 return View(db.Tuotteet.ToList());
             }
-
         }
 
         // GET: Tuotteet/Details
@@ -78,7 +77,7 @@ namespace LainausjarjestelmaMVC.Controllers
                                                                 Value = v.VarastoID.ToString(),
                                                                 Text = v.Varastopaikka + " " + v.Numero
                                                             };
-            ViewBag.VarastoID = new SelectList(SelectVarastoList, "Value", "Text");
+            ViewBag.kotiVarasto = new SelectList(SelectVarastoList, "Value", "Text");
 
             ViewBag.LainaajaID = new SelectList(db.Lainaajat, "LainaajaID", "Etunimi");
             return View();

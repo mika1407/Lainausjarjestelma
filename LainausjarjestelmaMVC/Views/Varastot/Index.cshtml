@@ -23,7 +23,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.OrderBy(t => t.Varastopaikka))
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Varastopaikka)
@@ -32,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Numero)
         </td>
         <td>
-            @Html.ActionLink("MUOKKAA", "Edit", new { id = item.VarastoID }, new { @class = "btn btn-secondary btn-sm" })&nbsp;
+            @Html.ActionLink("MUOKKAA", "Edit", new { id = item.VarastoID }, new { @class = "btn btn-outline-secondary btn-sm" })&nbsp;
             @*@Html.ActionLink("Yhteenveto", "Details", new { id = item.VarastoID })*@
             @Html.ActionLink("POISTA", "Delete", new { id = item.VarastoID }, new { @class = "btn btn-outline-danger btn-sm" })
         </td>

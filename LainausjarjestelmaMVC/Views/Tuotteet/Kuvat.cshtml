@@ -2,35 +2,49 @@
     ViewBag.Title = "Lainattavat tuotteet";
 }
 
+<style type="text/css">
+    .vapaa {
+        color: lightgreen
+    }
+    .lainassa {
+        color: red
+    }
+</style>
+
 <br>
-<h2 style="margin-left:145px">Lainattavat tuotteet</h2>
+<h2 style="margin-left:152px">Lainattavat tuotteet</h2>
 <br>
-<div class="mb-md-3"  style="max-width:50%">
+<div class="mb-md-3" style="max-width:50%">
     @foreach (LainausjarjestelmaMVC.Models.Tuotteet tuote in Model)
     {
-    <div class="card" style="width:500px; margin-left:auto" >
-        
-        <h4 class="card-header" style="text-align:center">@tuote.Nimi</h4>
-        @*<h5 class="card-title" style="margin-left:25px">Kotivarasto: @tuote.Varastopaikka</h5>*@
+        <div class="card" style="width:476px; margin-left:auto">
+            <h4 class="card-header" style="text-align:center">@tuote.Nimi</h4>
 
-    <div class="containerkuva" style=" max-width:50%">
-        <a href="~/Lainaukset/Create" class="btnkuva button"><b>Lainaa</b></a>
-        <img style="height: 100%; text-align:center; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
-        <br>
-        <h6 class="card-text" style="padding:5px">Tila: @tuote.Tila</h6>
-        
-    </div>
+            <div class="containerkuva" style=" max-width:50%">
 
-    </div>
+                @*//Tilan väri-indikaattorit ja lainausnappi*@
+
+                @if (tuote.Tila == "Vapaa")
+                {
+                    <a href="~/Lainaukset/Create" class="btnkuva button"><b>LAINAA</b></a>
+                    <img style="height: 100%; text-align:center; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
+                    <br>
+                    <h6 class="card-text vapaa" style="padding:5px">@tuote.Tila</h6>
+                }
+
+                @if (tuote.Tila == "Lainassa")
+                {
+                    <img style="height: 100%; text-align:center; max-width: 100%" src="@tuote.Kuva" alt="@tuote.Kuva">
+                    <br>
+                    <h6 class="card-text lainassa" style="padding:5px">@tuote.Tila</h6>
+                }
+
+            </div>
+        </div>
+        <br />
         <div class="card-body" style="text-align:center">
             <a href="#" class="card-link">Takaisin ylös</a>
         </div>
     }
+
 </div>
-
-
-
-
-
-
-
