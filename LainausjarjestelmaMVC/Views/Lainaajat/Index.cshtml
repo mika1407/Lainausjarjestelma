@@ -28,7 +28,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.OrderBy(k => k.Sukunimi))
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Etunimi)

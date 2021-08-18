@@ -23,6 +23,7 @@ namespace LainausjarjestelmaMVC.Models
     
         public int LoginID { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Sähköposti")]
         [Required(ErrorMessage = "Anna sähköpostiosoite!")]
         public string Email { get; set; }

@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Poista - Tuote";
+
+    //Kuvathumb
+
+    var kuvaLinkki = @Model.Kuva;
 }
 
 <br />
@@ -12,7 +16,13 @@
     <h4>Tuote</h4>
     <hr />
     <h4 class="text-danger">Oletko varma, että haluat poistaa tämän Tuotteen?</h4>
+
+    <div style="padding:4px;">
+        <img src=@kuvaLinkki alt="Tuote, jota olet poistamassa" width="120" />
+    </div>
+
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.Nimi)
         </dt>
@@ -27,14 +37,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Kotivarasto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Kuva)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Kuva)
         </dd>
 
         <dt>

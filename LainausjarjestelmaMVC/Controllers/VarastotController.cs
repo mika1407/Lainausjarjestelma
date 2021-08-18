@@ -49,6 +49,7 @@ namespace LainausjarjestelmaMVC.Controllers
         // GET: Varastot/Create
         public ActionResult Create()
         {
+            ViewBag.LoggedStatus = "Admin";
             return View();
         }
 
